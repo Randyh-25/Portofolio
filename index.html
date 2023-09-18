@@ -1,1 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randy's Portfolio</title>
+</head>
+<style>
+.active-link {
+    color: #ffcc00;
+}
 
+.zigzag {
+    transform: scaleX(-1);
+}
+
+body, h1, h2, ul, li, p {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('https://raw.githubusercontent.com/Randyh-25/Portofolio/83894f8b34a914a68057e0e262bc1ff4c3c2da11/Images/bg.gif'); /* Replace 'background.gif' with your GIF file path */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: #fff;
+    text-align: center;
+    line-height: 1.6;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.6); /* Add a semi-transparent background color for readability */
+    padding: 20px;
+}
+
+header h1 {
+    font-size: 36px;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav li {
+    display: inline;
+    margin: 0 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+}
+
+.section {
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.6); /* Add a semi-transparent background color for readability */
+    border: 2px solid #444;
+    border-radius: 8px;
+    margin: 20px auto; /* Center sections vertically and horizontally */
+    max-width: 800px; /* Limit the width of sections */
+}
+
+.section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.6); /* Add a semi-transparent background color for readability */
+    padding: 10px;
+    width: 100%;
+}
+
+.button-link {
+    display: inline-block;
+    text-decoration: none;
+}
+
+.instagram-button {
+    background: url('https://i.pinimg.com/564x/b6/2f/6f/b62f6f913571a0254f4e4f636838977f.jpg') no-repeat center center; /* Replace 'your-image-url.jpg' with your image URL */
+    background-size: cover; /* Adjust background size to cover the button */
+    width: 20px; /* Set the button width */
+    height: 20px; /* Set the button height */
+    border: none; /* Remove button border */
+    cursor: pointer;
+}
+
+
+</style>
+<body>
+    <header>
+        <h1>My Portfolio</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a class="nav-link" href="#about">About</a></li>
+            <li><a class="nav-link" href="#projects">Projects</a></li>
+            <li><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <section id="projects" class="section">
+        <h2>My Projects</h2>
+        
+    </section>
+    <footer>
+        <div class="footer-section">
+            <h2>About Me</h2>
+            <p>Randy Hendriyawan</p>
+            <p>122140171</p>
+        </div>
+        <div class="footer-section">
+            <h2>Contact Me</h2>
+            <a href="https://www.instagram.com/randy.25/" class="button-link"> 
+            <button class="instagram-button"></button> </a>
+        </div>
+        <p>&copy; 2023 Randy Hendriyawan</p>
+    </footer>
+    <script>
+        const navLinks = document.querySelectorAll('.nav-link');
+const sections = document.querySelectorAll('.section');
+
+let isZigzag = true; // Initialize as true to start with a zigzag pattern
+
+function updateNavZigzag() {
+    sections.forEach((section, index) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 150 && rect.bottom >= 150) {
+            // Toggle the 'zigzag' class for the corresponding navigation link
+            navLinks.forEach((link) => link.classList.remove('zigzag'));
+            if (isZigzag) {
+                navLinks[index].classList.add('zigzag');
+            } else {
+                navLinks[(sections.length - 1) - index].classList.add('zigzag');
+            }
+        }
+    });
+
+    // Toggle the isZigzag variable
+    isZigzag = !isZigzag;
+}
+
+window.addEventListener('scroll', updateNavZigzag);
+updateNavZigzag(); // Initial update
+
+// Get the "About" link and the footer element
+const aboutLink = document.querySelector('.nav-link[href="#about"]');
+const footer = document.querySelector('footer');
+
+// Add an event listener to the "About" link to scroll to the footer
+aboutLink.addEventListener('click', (e) => {
+    e.preventDefault(); // Prevent the default link behavior (navigation)
+    
+    // Scroll to the footer smoothly
+    footer.scrollIntoView({ behavior: 'smooth' });
+});
+
+
+    </script>
+</body>
+</html>
