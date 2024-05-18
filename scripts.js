@@ -60,8 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Open Personal Info window automatically
     openApp('Personal Info');
 });
-
-
 function adjustDockSize() {
   const dock = document.getElementById('dock');
   const dockItems = dock.querySelectorAll('.dock-item');
@@ -69,7 +67,16 @@ function adjustDockSize() {
   dock.style.width = `${dockWidth}px`;
 }
 
-
+window.openApp = function(appName) {
+  const appWindow = createWindow(appName);
+  desktop.appendChild(appWindow);
+  setTimeout(() => {
+    appWindow.classList.remove('window-hidden');
+  }, 10);
+  makeDraggable(appWindow);
+  makeResizable(appWindow);
+    
+};
 
 
 function createWindow(appName) {
