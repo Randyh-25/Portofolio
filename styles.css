@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background: url('https://4kwallpapers.com/images/walls/thumbs_3t/1455.jpg') no-repeat center center fixed;
+  background: url('https://raw.githubusercontent.com/Randyh-25/Portofolio/main/assets/Wallpaper/windows-11-dark-mode-abstract-background-black-background-3840x2160-8710.jpg') no-repeat center center fixed;
   background-size: cover;
   color: #000;
 }
@@ -72,7 +72,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.8);
+  background: #444;
   padding: 10px;
   position: fixed;
   bottom: 0;
