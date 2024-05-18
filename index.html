@@ -3,26 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Randy Hendriyawan's Portofolio</title>
+    <title>Randy's Portfolio</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div id="desktop">
-        <!-- Applications will be dynamically added here -->
-    </div>
-    <div id="dock-container">
-        <div id="dock">
-            <div class="dock-item" onclick="openApp('Finder')">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Finder_Icon_macOS_Big_Sur.png/800px-Finder_Icon_macOS_Big_Sur.png" alt="Finder">
+        <div id="personal-info" class="window window-hidden">
+            <div class="window-header">
+                <div class="window-buttons">
+                    <div class="close" onclick="closeApp(this)"></div>
+                    <div class="minimize" onclick="minimizeApp(this)"></div>
+                    <div class="zoom" onclick="maximizeApp(this)"></div>
+                </div>
+                <span class="window-title">About Randy</span>
             </div>
-            <div class="dock-item" onclick="openApp('Safari')">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/640px-LinkedIn_logo_initials.png" alt="LinkedIn">
+            <div class="window-content">
+                <h2>Randy Hendriyawan</h2>
+                <img src="https://lh3.googleusercontent.com/a/ACg8ocKru9O5NWtEUPLSXvl3Qe2R-7IaVDlvfCCIlA6D9A-L-dnEqQquBw=s288-c-no" alt="Your Photo" style="width: 150px;">
+                <p>Mahasiswa</p>
+                <p>20 Tahun</p>
+                <p>Bandar Lampung</p>
+                <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget erat consequat, consectetur elit ut, efficitur lectus. Sed varius dignissim tortor. Duis eu sem eu purus auctor suscipit.</p>
             </div>
-            <div class="dock-item" onclick="openApp('Mail')">
-                <img src="https://help.apple.com/assets/65A8108F6524DBD548085484/65A81090303713255A088515/en_US/e4dbb8e240d50cf30bab73b272a3760b.png" alt="Mail">
-            </div>
-            <!-- Add more dock items here -->
+            <div class="resize-handle resize-handle-top"></div>
+            <div class="resize-handle resize-handle-right"></div>
+            <div class="resize-handle resize-handle-bottom"></div>
+            <div class="resize-handle resize-handle-left"></div>
+            <div class="resize-handle resize-handle-top-left"></div>
+            <div class="resize-handle resize-handle-top-right"></div>
+            <div class="resize-handle resize-handle-bottom-left"></div>
+            <div class="resize-handle resize-handle-bottom-right"></div>
         </div>
+    </div>
+    <div id="dock">
+        <div class="dock-item" onclick="openApp('Finder')">
+            <img src="https://images.macrumors.com/t/5BiCx6nBBb0fGUFWfLHjqaD1zFk=/1200x1200/smart/article-new/2018/02/macos-finder-icon.jpg" alt="Finder" title="Finder">
+        </div>
+        <div class="dock-item" onclick="openApp('Safari')">
+            <img src="https://store-images.s-microsoft.com/image/apps.31120.9007199266245564.44dc7699-748d-4c34-ba5e-d04eb48f7960.bc4172bd-63f0-455a-9acd-5457f44e4473?h=464" alt="Safari" title="Safari">
+        </div>
+        <div class="dock-item" onclick="openApp('Mail')">
+            <img src="https://cdn0.iconfinder.com/data/icons/apple-apps/100/Apple_Mail-512.png" alt="Mail" title="Mail">
+        </div>
+        <div class="dock-item" onclick="openApp('Personal Info')">
+            <img src="https://lh3.googleusercontent.com/a/ACg8ocKru9O5NWtEUPLSXvl3Qe2R-7IaVDlvfCCIlA6D9A-L-dnEqQquBw=s288-c-no" alt="Personal Info" title="Personal Info">
+        </div>
+        <!-- Add more dock items here -->
     </div>
     <script src="scripts.js"></script>
 </body>
