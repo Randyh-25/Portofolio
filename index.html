@@ -3,64 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Randy's Portfolio</title>
+    <title>Portofolio Saya</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&display=swap">
 </head>
 <body>
-    <div id="desktop">
-        <div id="personal-info" class="window window-hidden">
-            <div class="window-header">
-                <div class="window-buttons">
-                    <div class="close" onclick="closeApp(this)"></div>
-                    <div class="minimize" onclick="minimizeApp(this)"></div>
-                    <div class="zoom" onclick="maximizeApp(this)"></div>
-                </div>
-                <span class="window-title">About Randy</span>
-            </div>
-            <div class="window-content">
-                <h2>Randy Hendriyawan</h2>
-                <img src="https://lh3.googleusercontent.com/a/ACg8ocKru9O5NWtEUPLSXvl3Qe2R-7IaVDlvfCCIlA6D9A-L-dnEqQquBw=s288-c-no" alt="Your Photo" style="width: 150px;">
-                <p>Mahasiswa</p>
-                <p>20 Tahun</p>
-                <p>Bandar Lampung</p>
-                <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget erat consequat, consectetur elit ut, efficitur lectus. Sed varius dignissim tortor. Duis eu sem eu purus auctor suscipit.</p>
-            </div>
-
-          <div id="finder" class="window window-hidden">
-            <div class="window-header">
-                <div class="window-buttons">
-                    <div class="close" onclick="closeApp(this)"></div>
-                    <div class="minimize" onclick="minimizeApp(this)"></div>
-                    <div class="zoom" onclick="maximizeApp(this)"></div>
-                </div>
-                <span class="window-title">Finder</span>
-            </div>
-            
-          
-            <div class="resize-handle resize-handle-top"></div>
-            <div class="resize-handle resize-handle-right"></div>
-            <div class="resize-handle resize-handle-bottom"></div>
-            <div class="resize-handle resize-handle-left"></div>
-            <div class="resize-handle resize-handle-top-left"></div>
-            <div class="resize-handle resize-handle-top-right"></div>
-            <div class="resize-handle resize-handle-bottom-left"></div>
-            <div class="resize-handle resize-handle-bottom-right"></div>
+    <div id="landing-page">
+        <div class="landing-text">
+            <h1>Portofolio Randy Hendriyawan</h1>
+            <button id="portfolio-button">Lihat Portofolio Saya</button>
         </div>
     </div>
-    <div id="dock">
-        <div class="dock-item" onclick="openApp('Finder')">
-            <img src="https://images.macrumors.com/t/5BiCx6nBBb0fGUFWfLHjqaD1zFk=/1200x1200/smart/article-new/2018/02/macos-finder-icon.jpg" alt="Finder" title="Finder">
+    <div id="portfolio-page">
+        <div class="container">
+            <div class="left">
+                <img src="path/to/your/photo.jpg" alt="Foto Saya" class="profile-photo">
+            </div>
+            <div class="right">
+                <div class="tabs">
+                    <button class="tab-link active" onclick="openTab(event, 'Tab1')">Tab 1</button>
+                    <button class="tab-link" onclick="openTab(event, 'Tab2')">Tab 2</button>
+                    <button class="tab-link" onclick="openTab(event, 'Tab3')">Tab 3</button>
+                    <button class="tab-link" onclick="openTab(event, 'Tab4')">Tab 4</button>
+                </div>
+              <div id="Tab1" class="tab-content">
+                  <h2>Data Diri</h2>
+                  <p><strong>Nama Lengkap:</strong> Randy Hendriyawan</p>
+                  <p><strong>Tempat, Tanggal Lahir:</strong> Medan, 25 Agustus 2004</p>
+                  <p><strong>Email:</strong> <a href="mailto:randyhendriyawan@gmail.com">randyhendriyawan@gmail.com</a></p>
+                  <p><strong>Media Sosial:</strong></p>
+                  <div class="social-icons">
+                      <a href="https://www.instagram.com/your_username" target="_blank" title="Instagram"><img src="path/to/instagram-icon.png" alt="Instagram"></a>
+                      <a href="https://www.youtube.com/your_channel" target="_blank" title="YouTube"><img src="path/to/youtube-icon.png" alt="YouTube"></a>
+                      <a href="https://twitter.com/your_username" target="_blank" title="Twitter"><img src="path/to/twitter-icon.png" alt="Twitter"></a>
+                  </div>
+              </div>
+
+                <div id="Tab2" class="tab-content" style="display:none;">
+                    <h2>Tab 2</h2>
+                    <p>Konten untuk tab 2...</p>
+                </div>
+                <div id="Tab3" class="tab-content" style="display:none;">
+                    <h2>Tab 3</h2>
+                    <p>Konten untuk tab 3...</p>
+                </div>
+                <div id="Tab4" class="tab-content" style="display:none;">
+                    <h2>Tab 4</h2>
+                    <p>Konten untuk tab 4...</p>
+                </div>
+            </div>
         </div>
-        <div class="dock-item" onclick="openApp('Safari')">
-            <img src="https://store-images.s-microsoft.com/image/apps.31120.9007199266245564.44dc7699-748d-4c34-ba5e-d04eb48f7960.bc4172bd-63f0-455a-9acd-5457f44e4473?h=464" alt="Safari" title="Safari">
-        </div>
-        <div class="dock-item" onclick="openApp('Mail')">
-            <img src="https://cdn0.iconfinder.com/data/icons/apple-apps/100/Apple_Mail-512.png" alt="Mail" title="Mail">
-        </div>
-        <div class="dock-item" onclick="openApp('Personal Info')">
-            <img src="https://lh3.googleusercontent.com/a/ACg8ocKru9O5NWtEUPLSXvl3Qe2R-7IaVDlvfCCIlA6D9A-L-dnEqQquBw=s288-c-no" alt="Personal Info" title="Personal Info">
-        </div>
-        <!-- Add more dock items here -->
     </div>
     <script src="scripts.js"></script>
 </body>

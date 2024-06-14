@@ -1,203 +1,152 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background: url('https://raw.githubusercontent.com/Randyh-25/Portofolio/main/assets/Wallpaper/windows-11-dark-mode-abstract-background-black-background-3840x2160-8710.jpg') no-repeat center center fixed;
-  background-size: cover;
-  color: #000;
+/* styles.css */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    overflow: hidden;
 }
 
-#desktop {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  padding-top: 24px; /* To avoid overlap with menu bar */
+#landing-page, #portfolio-page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease, transform 1s ease;
 }
 
-.window {
-  background: #333;
-  color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-  position: absolute;
-  top: 100px;
-  left: 100px;
-  width: 500px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+#portfolio-page {
+    opacity: 0;
+    transform: translateX(100%);
 }
 
-.window-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #444;
-  padding: 8px 12px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  cursor: move;
+.landing-text {
+    text-align: center;
 }
 
-.window-buttons {
-  display: flex;
+.landing-text h1 {
+    margin-bottom: 20px;
+    font-size: 36px;
+    color: #333;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3); /* Shadow for text */
 }
 
-.window-buttons div {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  margin-right: 8px;
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    font-family: 'Playfair Display', serif;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Drop shadow for button */
 }
 
-.close {
-  background: #ff5f57;
-  cursor: pointer;
+button:hover {
+    background-color: #555;
 }
 
-.minimize {
-  background: #ffbd2e;
-  cursor: pointer;
+.container {
+    display: flex;
+    width: 80%;
+    height: 80%;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-.zoom {
-  background: #28c940;
-  cursor: pointer;
+.left {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
 }
 
-.window-content {
-  padding: 20px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+.profile-photo {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 50%;
 }
 
-#dock {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #444;
-  padding: 10px;
-  position: fixed;
-  bottom: 0;
-  width: auto; /* Changed from 100% to auto */
-  margin: 0 auto;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-  border-radius: 15px;
-  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+.right {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
 }
 
-.dock-item {
-  margin: 0 10px;
+.tabs {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
 }
 
-.dock-item img {
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  transition: transform 0.2s, filter 0.2s;
+.tab-link {
+    flex: 1;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 18px;
+    font-family: 'Playfair Display', serif;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
 }
 
-.dock-item img:hover {
-  transform: scale(1.2);
-  filter: brightness(1.2);
+.tab-link.active {
+    border-bottom: 2px solid #333;
 }
 
-.window-hidden {
-  transform: scale(0.8);
-  opacity: 0;
+.tab-content {
+    flex: 1;
+    padding: 20px;
+    display: none;
+    overflow: auto;
 }
 
-.window-title {
-  flex-grow: 1;
-  text-align: center;
+.tab-content h2 {
+    font-family: 'Playfair Display', serif;
 }
 
-.resize-handle {
-  position: absolute;
-  background: transparent;
+.tab-content p {
+    font-family: 'Roboto', sans-serif;
 }
 
-.resize-handle-top,
-.resize-handle-bottom {
-  height: 10px;
-  left: 0;
-  right: 0;
-  cursor: ns-resize;
+.tab-content.active {
+    display: block;
 }
 
-.resize-handle-top {
-  top: -5px;
+.social-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
 }
 
-.resize-handle-bottom {
-  bottom: -5px;
+.social-icons a {
+    display: inline-block;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: transform 0.3s ease;
 }
 
-.resize-handle-left,
-.resize-handle-right {
-  width: 10px;
-  top: 0;
-  bottom: 0;
-  cursor: ew-resize;
+.social-icons a:hover {
+    transform: translateY(-5px);
 }
 
-.resize-handle-left {
-  left: -5px;
-}
-
-.resize-handle-right {
-  right: -5px;
-}
-
-.resize-handle-top-left,
-.resize-handle-top-right,
-.resize-handle-bottom-left,
-.resize-handle-bottom-right {
-  width: 10px;
-  height: 10px;
-  cursor: nwse-resize;
-}
-
-.resize-handle-top-left {
-  top: -5px;
-  left: -5px;
-  cursor: nw-resize;
-}
-
-.resize-handle-top-right {
-  top: -5px;
-  right: -5px;
-  cursor: ne-resize;
-}
-
-.resize-handle-bottom-left {
-  bottom: -5px;
-  left: -5px;
-  cursor: sw-resize;
-}
-
-.resize-handle-bottom-right {
-  bottom: -5px;
-  right: -5px;
-  cursor: se-resize;
-}
-
-.window {
-  background: #1e1e1e;
-  border-radius: 10px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-  position: absolute;
-  top: 100px;
-  left: 100px;
-  width: 500px;
-  min-width: 300px; /* Set minimum width */
-  min-height: 200px; /* Set minimum height */
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.window-content {
-  padding: 20px;
-  color: #fff;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  overflow: auto;
+.social-icons img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Drop shadow for icons */
 }
