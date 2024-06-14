@@ -13,14 +13,19 @@ function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName('tab-content');
     for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = 'none';
+        tabcontent[i].classList.remove('active'); // Remove the 'active' class
+        tabcontent[i].style.opacity = '0'; // Set opacity to 0 for smooth transition
     }
     tablinks = document.getElementsByClassName('tab-link');
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(' active', '');
     }
-    document.getElementById(tabName).style.display = 'block';
+    document.getElementById(tabName).classList.add('active'); // Add the 'active' class
     evt.currentTarget.className += ' active';
+
+    setTimeout(function() {
+        document.getElementById(tabName).style.opacity = '1'; // Set opacity to 1 after adding 'active' class
+    }, 10); // Small delay to ensure the transition effect
 }
 
 // Set default active tab
