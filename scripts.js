@@ -26,9 +26,21 @@ function openTab(evt, tabName) {
     setTimeout(function() {
         document.getElementById(tabName).style.opacity = '1'; // Set opacity to 1 after adding 'active' class
     }, 10); // Small delay to ensure the transition effect
+
+    // Animate stars
+    animateStars(tabName);
 }
 
 // Set default active tab
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('.tab-link').click();
 });
+
+function animateStars(tabName) {
+    var stars = document.querySelectorAll('#' + tabName + ' .star');
+    stars.forEach(function(star, index) {
+        setTimeout(function() {
+            star.classList.add('active');
+        }, index * 100); // Delay each star's animation
+    });
+}
