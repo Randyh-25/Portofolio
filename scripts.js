@@ -1,13 +1,37 @@
 // scripts.js
-document.getElementById('portfolio-button').addEventListener('click', function() {
-    document.getElementById('landing-page').style.opacity = '0';
-    document.getElementById('landing-page').style.transform = 'translateX(-100%)';
+// scripts.js
 
+document.getElementById('portfolio-button').addEventListener('click', function() {
+    const landingPage = document.getElementById('landing-page');
+    const portfolioPage = document.getElementById('portfolio-page');
+    const button = document.getElementById('portfolio-button');
+
+    // Start the morphing animation
+
+
+    portfolioPage.style.display = 'flex';
+    portfolioPage.classList.add('transitioning');
+
+    // Wait for the button to grow
     setTimeout(function() {
-        document.getElementById('portfolio-page').style.opacity = '1';
-        document.getElementById('portfolio-page').style.transform = 'translateX(0)';
-    }, 1000);
+        landingPage.style.opacity = '0';
+        portfolioPage.style.transform = 'scale(1)';
+        portfolioPage.style.opacity = '1';
+    }, 50); // Small delay for initial opacity change
+
+    // Complete the transition
+    setTimeout(function() {
+        landingPage.classList.add('hidden');
+        button.classList.remove('morphing');
+        portfolioPage.classList.remove('transitioning');
+        portfolioPage.classList.add('morphed');
+    }, 1050); // Ensure the animation duration matches the CSS transition
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('.tab-link').click();
+});
+
 
 function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
