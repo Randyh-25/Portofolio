@@ -1,7 +1,7 @@
 <h1 align="center">Hi 👋, I'm Randy Hendriyawan</h1>
 <h3 align="center">A student from Indonesia</h3>
 
-- 🔭 I’m currently studying on **Informathics Engineering**
+- 🔭 I’m currently studying on **Informatics Engineering**
 
 - 👨‍💻 All of my projects are available at [https://randyh-25.github.io/Portofolio/](https://randyh-25.github.io/Portofolio/)
 
