@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Github, ExternalLink, Gamepad2, Image, Cpu, Globe } from 'lucide-react';
+import { Github, ExternalLink, Gamepad2, Image, Cpu, Globe, ChevronLeft, ChevronRight } from 'lucide-react';
 
-interface ProjectItem {
+export interface ProjectItem {
   title: string;
   description: string;
   technologies: string[];
@@ -10,44 +10,66 @@ interface ProjectItem {
   liveUrl?: string;
   icon: React.ReactNode;
   color: string;
+  screenshots: string[];
 }
 
-const Projects: React.FC = () => {
-  const projects: ProjectItem[] = [
-    {
-      title: 'Too Much Pixels',
-      description: '2D top-down survival pixel-art game with engaging gameplay mechanics.',
-      technologies: ['Python', 'Pygame'],
-      githubUrl: 'https://github.com/Randyh-25',
-      icon: <Gamepad2 className="w-5 h-5" />,
-      color: 'bg-red-500',
-    },
-    {
-      title: 'Pic-Sorter',
-      description: 'Desktop app to automatically organize images using metadata analysis.',
-      technologies: ['Python', 'Tkinter'],
-      githubUrl: 'https://github.com/Randyh-25',
-      icon: <Image className="w-5 h-5" />,
-      color: 'bg-blue-500',
-    },
-    {
-      title: 'CPU Scheduling Simulator',
-      description: 'Simulation of CPU scheduling algorithms with result visualization.',
-      technologies: ['Python'],
-      githubUrl: 'https://github.com/Randyh-25',
-      icon: <Cpu className="w-5 h-5" />,
-      color: 'bg-purple-500',
-    },
-    {
-      title: 'Project UMKM',
-      description: 'Web platform promoting local village MSMEs and digital products.',
-      technologies: ['HTML', 'CSS', 'PHP'],
-      githubUrl: 'https://github.com/Randyh-25',
-      icon: <Globe className="w-5 h-5" />,
-      color: 'bg-green-500',
-    },
-  ];
+export const projects: ProjectItem[] = [
+  {
+    title: 'Too Much Pixels',
+    description: '2D top-down survival pixel-art game with engaging gameplay mechanics.',
+    technologies: ['Python', 'Pygame'],
+    githubUrl: 'https://github.com/Randyh-25/TooMuchPixels',
+    icon: <Gamepad2 className="w-5 h-5" />,
+    color: 'bg-red-500',
+    screenshots: [
+      'https://raw.githubusercontent.com/Randyh-25/TooMuchPixels/refs/heads/main/img/SS%20(1).png',
+      'https://raw.githubusercontent.com/Randyh-25/TooMuchPixels/refs/heads/main/img/SS%20(2).png',
+      'https://raw.githubusercontent.com/Randyh-25/TooMuchPixels/refs/heads/main/img/SS%20(3).png',
+      'https://raw.githubusercontent.com/Randyh-25/TooMuchPixels/refs/heads/main/img/SS%20(4).png',
+    ],
+  },
+  {
+    title: 'Pic-Sorter',
+    description: 'Desktop app to automatically organize images using metadata analysis.',
+    technologies: ['Python', 'Tkinter'],
+    githubUrl: 'https://github.com/Randyh-25/Pic-Sorter/tree/main',
+    icon: <Image className="w-5 h-5" />,
+    color: 'bg-blue-500',
+    screenshots: [
+      'https://raw.githubusercontent.com/Randyh-25/Pic-Sorter/refs/heads/main/Screenshoot/1.TentukanJumlahKategori.png',
+      'https://raw.githubusercontent.com/Randyh-25/Pic-Sorter/refs/heads/main/Screenshoot/2.MasukanKategori.png',
+      'https://raw.githubusercontent.com/Randyh-25/Pic-Sorter/refs/heads/main/Screenshoot/3.%20Sortir.png',
+    ],
+  },
+  {
+    title: 'CPU Scheduling Simulator',
+    description: 'Simulation of CPU scheduling algorithms with result visualization.',
+    technologies: ['Python'],
+    githubUrl: 'https://randyh-25.github.io/CPU-Scheduling/',
+    icon: <Cpu className="w-5 h-5" />,
+    color: 'bg-purple-500',
+    screenshots: [
+      'https://raw.githubusercontent.com/Randyh-25/CPU-Scheduling/refs/heads/main/img/SS%20(1).png',
+      'https://raw.githubusercontent.com/Randyh-25/CPU-Scheduling/refs/heads/main/img/SS%20(2).png',
+    ],
+  },
+  {
+    title: 'Project UMKM',
+    description: 'Web platform promoting local village MSMEs and digital products.',
+    technologies: ['Typescript', 'Next.js', 'Express.js', 'MongoDB'],
+    githubUrl: 'https://github.com/Randyh-25',
+    icon: <Globe className="w-5 h-5" />,
+    color: 'bg-green-500',
+    screenshots: [
+      'https://via.placeholder.com/320x180?text=UMKM+1',
+      'https://via.placeholder.com/320x180?text=UMKM+2',
+      'https://via.placeholder.com/320x180?text=UMKM+3',
+      'https://via.placeholder.com/320x180?text=UMKM+4',
+    ],
+  },
+];
 
+const Projects: React.FC = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -62,6 +84,48 @@ const Projects: React.FC = () => {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
   };
+
+  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const slideInterval = useRef<NodeJS.Timeout | null>(null);
+
+  // Reset slide index when modal open
+  useEffect(() => {
+    setCurrentSlide(0);
+  }, [selectedProject]);
+
+  // Auto-slide logic
+  useEffect(() => {
+    if (!selectedProject) return;
+    slideInterval.current && clearInterval(slideInterval.current);
+    slideInterval.current = setInterval(() => {
+      setCurrentSlide((prev) =>
+        selectedProject && selectedProject.screenshots.length > 0
+          ? (prev + 1) % selectedProject.screenshots.length
+          : 0
+      );
+    }, 3000);
+    return () => {
+      slideInterval.current && clearInterval(slideInterval.current);
+    };
+  }, [selectedProject, currentSlide]);
+
+  const handlePrev = () => {
+    if (!selectedProject) return;
+    setCurrentSlide((prev) =>
+      prev === 0 ? selectedProject.screenshots.length - 1 : prev - 1
+    );
+  };
+
+  const handleNext = () => {
+    if (!selectedProject) return;
+    setCurrentSlide((prev) =>
+      (prev + 1) % selectedProject.screenshots.length
+    );
+  };
+
+  // Tutup modal
+  const closeModal = () => setSelectedProject(null);
 
   return (
     <section id="projects" className="py-20 bg-white">
@@ -98,8 +162,9 @@ const Projects: React.FC = () => {
             <motion.div
               key={project.title}
               variants={itemVariants}
-              className="bg-white rounded-2xl shadow-sm card-hover border border-slate-100 overflow-hidden group"
+              className="bg-white rounded-2xl shadow-sm card-hover border border-slate-100 overflow-hidden group cursor-pointer"
               whileHover={{ scale: 1.02 }}
+              onClick={() => setSelectedProject(project)}
             >
               <div className="p-6">
                 <div className="flex items-start justify-between mb-4">
@@ -109,37 +174,8 @@ const Projects: React.FC = () => {
                     </div>
                     <h3 className="text-xl font-semibold text-slate-900">{project.title}</h3>
                   </div>
-                  
-                  <div className="flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <motion.a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-slate-400 hover:text-slate-600 transition-colors"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      aria-label={`View ${project.title} on GitHub`}
-                    >
-                      <Github className="w-5 h-5" />
-                    </motion.a>
-                    {project.liveUrl && (
-                      <motion.a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-slate-400 hover:text-slate-600 transition-colors"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        aria-label={`View ${project.title} live demo`}
-                      >
-                        <ExternalLink className="w-5 h-5" />
-                      </motion.a>
-                    )}
-                  </div>
                 </div>
-
                 <p className="text-slate-600 mb-4 leading-relaxed">{project.description}</p>
-
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech) => (
                     <span key={tech} className="tech-tag">
@@ -151,6 +187,81 @@ const Projects: React.FC = () => {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Modal Project Detail */}
+        {selectedProject && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+            <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 relative animate-fadeIn">
+              {/* Tombol close */}
+              <button
+                onClick={closeModal}
+                className="absolute top-3 right-3 text-slate-400 hover:text-slate-700 text-xl"
+                aria-label="Close"
+              >
+                &times;
+              </button>
+              {/* Logo Project */}
+              <div className="flex flex-col items-center mb-4">
+                <div className={`${selectedProject.color} text-white p-4 rounded-2xl mb-3`}>
+                  {selectedProject.icon}
+                </div>
+                <h2 className="text-2xl font-bold mb-1">{selectedProject.title}</h2>
+              </div>
+              {/* Tombol View Github */}
+              <a
+                href={selectedProject.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full bg-blue-600 text-white text-center py-2 rounded-lg font-semibold mb-4 hover:bg-blue-700 transition"
+              >
+                View Github
+              </a>
+              {/* Deskripsi singkat */}
+              <p className="text-slate-700 text-center mb-4">{selectedProject.description}</p>
+              {/* Screenshot carousel */}
+              <div className="w-full h-48 bg-slate-100 rounded-lg flex items-center justify-center mb-2 overflow-hidden relative">
+                <button
+                  onClick={handlePrev}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-1 rounded-full shadow transition z-10"
+                  aria-label="Previous"
+                >
+                  <ChevronLeft className="w-6 h-6 text-slate-700" />
+                </button>
+                <img
+                  src={selectedProject.screenshots[currentSlide]}
+                  alt={`Screenshot ${currentSlide + 1}`}
+                  className="object-contain h-full transition-all duration-500"
+                />
+                <button
+                  onClick={handleNext}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-1 rounded-full shadow transition z-10"
+                  aria-label="Next"
+                >
+                  <ChevronRight className="w-6 h-6 text-slate-700" />
+                </button>
+                {/* Indicator dots */}
+                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2">
+                  {selectedProject.screenshots.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentSlide(idx)}
+                      className={`w-2.5 h-2.5 rounded-full ${currentSlide === idx ? 'bg-blue-600' : 'bg-slate-300'} transition`}
+                      aria-label={`Go to slide ${idx + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
+              {/* Teknologi */}
+              <div className="flex flex-wrap gap-2 justify-center mt-2">
+                {selectedProject.technologies.map((tech) => (
+                  <span key={tech} className="tech-tag">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -8,10 +8,10 @@ const AboutSkills: React.FC = () => {
       { name: 'C++', level: 85 },
       { name: 'Python', level: 90 },
       { name: 'HTML/CSS', level: 80 },
-      { name: 'Pygame', level: 85 },
-      { name: 'Tkinter', level: 80 },
+      { name: 'Typescript', level: 85 },
+      { name: 'Node.js', level: 80 },
     ],
-    tools: ['WordPress', 'Microsoft Office', 'Video Editing'],
+    tools: ['WordPress', 'VS Code', 'MongoDB', 'Vercell', 'Microsoft Office', 'Adobe Premiere Pro'],
     soft: ['Communication', 'Collaboration', 'Time Management', 'Leadership'],
   };
 
