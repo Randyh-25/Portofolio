@@ -61,10 +61,10 @@ export const projects: ProjectItem[] = [
     icon: <Globe className="w-5 h-5" />,
     color: 'bg-green-500',
     screenshots: [
-      'https://via.placeholder.com/320x180?text=UMKM+1',
-      'https://via.placeholder.com/320x180?text=UMKM+2',
-      'https://via.placeholder.com/320x180?text=UMKM+3',
-      'https://via.placeholder.com/320x180?text=UMKM+4',
+      'https://raw.githubusercontent.com/Randyh-25/Project-DigiVill/refs/heads/main/img/SS%20(1).png',
+      'https://raw.githubusercontent.com/Randyh-25/Project-DigiVill/refs/heads/main/img/SS%20(2).png',
+      'https://raw.githubusercontent.com/Randyh-25/Project-DigiVill/refs/heads/main/img/SS%20(3).png',
+      'https://raw.githubusercontent.com/Randyh-25/Project-DigiVill/refs/heads/main/img/SS%20(4).png',
     ],
   },
 ];
