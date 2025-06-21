@@ -189,7 +189,7 @@ const Hero: React.FC = () => {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <img
-                src="/src/assets/profile.jpg"
+                src="https://raw.githubusercontent.com/Randyh-25/Portofolio/refs/heads/main/src/assets/profile.jpg"
                 alt="Profile"
                 className="w-full h-full object-cover"
               />
