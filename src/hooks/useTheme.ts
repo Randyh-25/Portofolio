@@ -4,10 +4,11 @@ export function useTheme() {
   const [isDarkMode, setIsDarkMode] = useState(() => {
     if (typeof window !== 'undefined') {
       const savedTheme = localStorage.getItem('theme');
-      // Default ke dark mode jika tidak ada preferensi
-      return savedTheme ? savedTheme === 'dark' : true;
+      // Jika tidak ada tema tersimpan, default ke light mode (false)
+      return savedTheme ? savedTheme === 'dark' : false;
     }
-    return true;
+    // Fallback untuk SSR, default ke light mode
+    return false;
   });
 
   useEffect(() => {
