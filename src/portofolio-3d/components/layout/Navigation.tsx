@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Link } from 'react-router-dom'; // Import Link
 import { gsap } from 'gsap';
 
 interface NavigationProps {
@@ -72,7 +73,17 @@ const Navigation: React.FC<NavigationProps> = ({ isDarkMode, toggleTheme }) => {
                 } transition-all duration-300 group-hover:w-full`}></span>
               </button>
             ))}
-            
+
+            {/* Tombol Normal Mode */}
+            <Link
+              to="/"
+              className={`transition-colors duration-300 relative group text-sm font-medium ${
+                isDarkMode ? 'text-cyan-400/80 hover:text-cyan-400' : 'text-blue-600/90 hover:text-blue-600'
+              }`}
+            >
+              Normal Mode
+            </Link>
+
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
@@ -107,7 +118,7 @@ const Navigation: React.FC<NavigationProps> = ({ isDarkMode, toggleTheme }) => {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Menu */}
         {isOpen && (
           <div className={`md:hidden absolute top-full left-0 right-0 ${
             isDarkMode 
@@ -126,6 +137,17 @@ const Navigation: React.FC<NavigationProps> = ({ isDarkMode, toggleTheme }) => {
                   {item.name}
                 </button>
               ))}
+              {/* Tombol Normal Mode untuk Mobile */}
+              <Link
+                to="/"
+                className={`block w-full text-left py-2 transition-colors duration-300 mt-4 border-t pt-4 ${
+                  isDarkMode
+                    ? 'text-cyan-400 hover:text-cyan-300 border-white/10'
+                    : 'text-blue-600 hover:text-blue-500 border-black/10'
+                }`}
+              >
+                Normal Mode
+              </Link>
             </div>
           </div>
         )}

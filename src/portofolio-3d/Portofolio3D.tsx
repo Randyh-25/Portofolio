@@ -12,7 +12,7 @@ import Footer from './components/layout/Footer';
 
 gsap.registerPlugin(ScrollTrigger);
 
-function App() {
+function Portfolio3D() { // Ganti nama dari App menjadi Portfolio3D
   const [isDarkMode, setIsDarkMode] = useState(true);
 
   useEffect(() => {
@@ -77,4 +77,4 @@ function App() {
   );
 }
 
-export default App;
+export default Portfolio3D; // Ganti juga di sini

@@ -58,19 +58,18 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
         {/* Portrait Frame */}
         <div
           ref={portraitRef}
-          className={`mb-8 mx-auto w-48 h-48 rounded-full p-1 shadow-2xl ${
+          className={`mb-8 mx-auto w-48 h-48 rounded-full p-1 shadow-2xl overflow-hidden ${
             isDarkMode 
               ? 'bg-gradient-to-br from-cyan-400/20 to-purple-600/20 backdrop-blur-sm border border-white/20' 
               : 'bg-gradient-to-br from-blue-400/20 to-purple-400/20 backdrop-blur-sm border border-black/20'
           }`}
         >
-          <div className={`w-full h-full rounded-full flex items-center justify-center text-6xl font-bold shadow-inner ${
-            isDarkMode 
-              ? 'bg-gradient-to-br from-gray-700 to-gray-900 text-white' 
-              : 'bg-gradient-to-br from-gray-100 to-gray-300 text-gray-800'
-          }`}>
-            RH
-          </div>
+          {/* Ganti div "RH" dengan tag img ini */}
+          <img
+            src="https://raw.githubusercontent.com/Randyh-25/Portofolio/main/src/assets/profile.jpg"
+            alt="Profile"
+            className="w-full h-full object-cover rounded-full"
+          />
         </div>
 
         {/* Main Text */}
@@ -78,7 +77,7 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
           <span className={`bg-gradient-to-r ${
             isDarkMode 
               ? 'from-cyan-400 via-blue-500 to-purple-600' 
-              : 'from-blue-600 via-purple-600 to-purple-800'
+              : 'from-sky-500 via-blue-600 to-purple-600' // Gradien lebih cerah untuk light mode
           } bg-clip-text text-transparent`}>
             Randy Hendriyawan
           </span>
@@ -136,7 +135,7 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
             className={`group px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center gap-2 ${
               isDarkMode 
                 ? 'bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 text-white hover:shadow-purple-500/25' 
-                : 'bg-black/5 backdrop-blur-sm border border-black/20 hover:bg-black/10 text-gray-900 hover:shadow-purple-500/25'
+                : 'bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-800 hover:shadow-slate-500/10' // Style lebih jelas untuk light mode
             }`}
           >
             View Projects

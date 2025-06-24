@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom'; // Import Link
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,14 +57,12 @@ const Navbar: React.FC = () => {
               </button>
             ))}
             {/* Tombol 3D Mode */}
-            <a
-              href="https://randyh-25.github.io/Portofolio-3D"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/Portofolio3D"
               className="bg-blue-100 text-blue-700 px-4 py-2 rounded-lg font-semibold hover:bg-blue-200 transition-colors text-sm"
             >
               3D Mode
-            </a>
+            </Link>
           </nav>
 
           {/* Mobile menu button */}
@@ -98,14 +97,12 @@ const Navbar: React.FC = () => {
               </button>
             ))}
             {/* Tombol 3D Mode untuk Mobile */}
-            <a
-              href="https://randyh-25.github.io/Portofolio-3D"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/Portofolio3D"
               className="text-left px-4 py-2 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg font-medium transition-colors"
             >
               3D Mode
-            </a>
+            </Link>
           </div>
         </motion.div>
       )}

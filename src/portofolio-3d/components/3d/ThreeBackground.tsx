@@ -1,6 +1,129 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useMemo, useRef, useEffect } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { gsap } from 'gsap';
+
+interface PlexusProps {
+  isDarkMode: boolean;
+  count?: number;
+  maxDistance?: number;
+}
+
+const Plexus: React.FC<PlexusProps> = ({ isDarkMode, count = 150, maxDistance = 25 }) => {
+  const pointsRef = useRef<THREE.Points>(null!);
+  const linesRef = useRef<THREE.LineSegments>(null!);
+
+  // Buat titik-titik awal secara acak
+  const particles = useMemo(() => {
+    const temp = [];
+    for (let i = 0; i < count; i++) {
+      const time = Math.random() * 100;
+      const factor = 20 + Math.random() * 100;
+      const speed = 0.005 + Math.random() / 200;
+      const x = (Math.random() - 0.5) * 150;
+      const y = (Math.random() - 0.5) * 150;
+      const z = (Math.random() - 0.5) * 150;
+
+      temp.push({ time, factor, speed, x, y, z });
+    }
+    return temp;
+  }, [count]);
+
+  const dummy = useMemo(() => new THREE.Object3D(), []);
+
+  useFrame(() => {
+    const positions = pointsRef.current.geometry.attributes.position.array as Float32Array;
+    let particleIndex = 0;
+
+    // Update posisi setiap titik
+    particles.forEach((particle, i) => {
+      let { factor, speed, x, y, z } = particle;
+      const t = (particle.time += speed);
+      
+      dummy.position.set(
+        x + Math.cos((t / 10) * factor) + (Math.sin(t * 1) * factor) / 10,
+        y + Math.sin((t / 10) * factor) + (Math.cos(t * 2) * factor) / 10,
+        z + Math.cos((t / 10) * factor) + (Math.sin(t * 3) * factor) / 10
+      );
+      dummy.updateMatrix();
+      
+      positions[particleIndex++] = dummy.position.x;
+      positions[particleIndex++] = dummy.position.y;
+      positions[particleIndex++] = dummy.position.z;
+    });
+    pointsRef.current.geometry.attributes.position.needsUpdate = true;
+
+    // Update garis antar titik
+    const linePositions = linesRef.current.geometry.attributes.position.array as Float32Array;
+    let lineIndex = 0;
+    for (let i = 0; i < count; i++) {
+      for (let j = i + 1; j < count; j++) {
+        const p1_x = positions[i * 3];
+        const p1_y = positions[i * 3 + 1];
+        const p1_z = positions[i * 3 + 2];
+        const p2_x = positions[j * 3];
+        const p2_y = positions[j * 3 + 1];
+        const p2_z = positions[j * 3 + 2];
+
+        const dist = Math.sqrt((p1_x - p2_x)**2 + (p1_y - p2_y)**2 + (p1_z - p2_z)**2);
+
+        if (dist < maxDistance) {
+          linePositions[lineIndex++] = p1_x;
+          linePositions[lineIndex++] = p1_y;
+          linePositions[lineIndex++] = p1_z;
+          linePositions[lineIndex++] = p2_x;
+          linePositions[lineIndex++] = p2_y;
+          linePositions[lineIndex++] = p2_z;
+        }
+      }
+    }
+    // Potong array untuk hanya merender garis yang aktif
+    linesRef.current.geometry.setDrawRange(0, lineIndex / 3);
+    linesRef.current.geometry.attributes.position.needsUpdate = true;
+  });
+
+  // Material yang berubah sesuai mode
+  const pointMaterial = useMemo(() => new THREE.PointsMaterial({
+    color: isDarkMode ? '#00ffff' : '#3b82f6', // Dark: Cyan, Light: Blue-500
+    size: 1.5,
+    blending: THREE.AdditiveBlending,
+    transparent: true,
+    sizeAttenuation: true,
+    opacity: isDarkMode ? 1.0 : 0.8,
+  }), [isDarkMode]);
+
+  const lineMaterial = useMemo(() => new THREE.LineBasicMaterial({
+    color: isDarkMode ? '#ffffff' : '#94a3b8', // Dark: White, Light: Slate-400
+    transparent: true,
+    opacity: isDarkMode ? 0.25 : 0.35,
+    blending: isDarkMode ? THREE.AdditiveBlending : THREE.NormalBlending,
+  }), [isDarkMode]);
+
+  return (
+    <>
+      <points ref={pointsRef} material={pointMaterial}>
+        <bufferGeometry>
+          <bufferAttribute
+            attach="attributes-position"
+            count={count}
+            array={new Float32Array(count * 3)}
+            itemSize={3}
+          />
+        </bufferGeometry>
+      </points>
+      <lineSegments ref={linesRef} material={lineMaterial}>
+        <bufferGeometry>
+          <bufferAttribute
+            attach="attributes-position"
+            count={(count * count) / 2} // Alokasi memori maksimum
+            array={new Float32Array((count * count * 3) / 2)}
+            itemSize={3}
+          />
+        </bufferGeometry>
+      </lineSegments>
+    </>
+  );
+};
 
 interface ThreeBackgroundProps {
   isDarkMode: boolean;
@@ -180,7 +303,13 @@ const ThreeBackground: React.FC<ThreeBackgroundProps> = ({ isDarkMode }) => {
     };
   }, [isDarkMode]);
 
-  return <div ref={mountRef} className="fixed inset-0 z-0" />;
+  return (
+    <div className="fixed inset-0 z-0">
+      <Canvas camera={{ position: [0, 0, 75], fov: 75 }}>
+        <Plexus isDarkMode={isDarkMode} />
+      </Canvas>
+    </div>
+  );
 };
 
 export default ThreeBackground;
