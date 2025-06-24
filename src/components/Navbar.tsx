@@ -30,71 +30,86 @@ const Navbar: React.FC = () => {
   ];
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
+    <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'glass-effect shadow-lg py-2' : 'bg-transparent py-4'
+        scrolled
+          ? 'bg-white/80 shadow-md backdrop-blur-sm'
+          : 'bg-transparent'
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex justify-between items-center">
-          <motion.button
-            onClick={() => scrollToSection('hero')}
-            className="text-lg font-semibold text-slate-900 hover:text-blue-600 transition-colors"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Randy H.
-          </motion.button>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
-            {navItems.map((item) => (
-              <motion.button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className="text-slate-600 hover:text-slate-900 font-medium transition-colors"
-                whileHover={{ y: -2 }}
-                whileTap={{ y: 0 }}
-              >
-                {item.label}
-              </motion.button>
-            ))}
+        <div className="flex items-center justify-between h-20">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <h1 className="text-2xl font-bold gradient-text">Randy H.</h1>
           </div>
 
-          {/* Mobile Navigation Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
-          >
-            {isOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-6">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="font-medium text-slate-600 hover:text-slate-900 transition-colors"
+              >
+                {item.label}
+              </button>
+            ))}
+            {/* Tombol 3D Mode */}
+            <a
+              href="https://randyh-25.github.io/Portofolio-3D"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-blue-100 text-blue-700 px-4 py-2 rounded-lg font-semibold hover:bg-blue-200 transition-colors text-sm"
+            >
+              3D Mode
+            </a>
+          </nav>
 
-        {/* Mobile Navigation Menu */}
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden mt-4 pb-4"
-          >
-            <div className="flex flex-col space-y-2">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className="text-left px-4 py-2 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg font-medium transition-colors"
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-          </motion.div>
-        )}
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-slate-600 hover:text-slate-900"
+            >
+              <span className="sr-only">Open main menu</span>
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
       </div>
-    </motion.nav>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          className="md:hidden mt-4 pb-4"
+        >
+          <div className="flex flex-col space-y-2">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="text-left px-4 py-2 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg font-medium transition-colors"
+              >
+                {item.label}
+              </button>
+            ))}
+            {/* Tombol 3D Mode untuk Mobile */}
+            <a
+              href="https://randyh-25.github.io/Portofolio-3D"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-left px-4 py-2 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg font-medium transition-colors"
+            >
+              3D Mode
+            </a>
+          </div>
+        </motion.div>
+      )}
+    </header>
   );
 };
 
