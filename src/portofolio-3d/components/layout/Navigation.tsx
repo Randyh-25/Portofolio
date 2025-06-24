@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
-import { Link } from 'react-router-dom'; // Import Link
-import { gsap } from 'gsap';
+import { Link, useLocation } from 'react-router-dom';
 
 interface NavigationProps {
   isDarkMode: boolean;
@@ -11,6 +10,8 @@ interface NavigationProps {
 const Navigation: React.FC<NavigationProps> = ({ isDarkMode, toggleTheme }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const is3DMode = location.pathname === '/Portofolio3D';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -74,44 +75,37 @@ const Navigation: React.FC<NavigationProps> = ({ isDarkMode, toggleTheme }) => {
               </button>
             ))}
 
-            {/* Tombol Normal Mode */}
-            <Link
-              to="/"
-              className={`transition-colors duration-300 relative group text-sm font-medium ${
-                isDarkMode ? 'text-cyan-400/80 hover:text-cyan-400' : 'text-blue-600/90 hover:text-blue-600'
-              }`}
-            >
-              Normal Mode
-            </Link>
-
-            {/* Theme Toggle */}
-            <button
-              onClick={toggleTheme}
-              className={`p-2 rounded-full transition-all duration-300 ${
-                isDarkMode 
-                  ? 'bg-white/10 hover:bg-white/20 text-white' 
-                  : 'bg-black/10 hover:bg-black/20 text-gray-900'
-              }`}
-            >
-              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
+            {/* Toggles Container */}
+            <div className={`flex items-center gap-4 pl-6 border-l ${isDarkMode ? 'border-white/20' : 'border-black/20'}`}>
+              <Link
+                to="/"
+                className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-xs transition-all duration-300 ${
+                  isDarkMode ? 'bg-white/10 text-white/80 hover:bg-white/20' : 'bg-black/5 text-gray-800 hover:bg-black/10'
+                }`}
+                aria-label="Switch to Normal Mode"
+              >
+                2D
+              </Link>
+              <button
+                onClick={toggleTheme}
+                className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
+                  isDarkMode 
+                    ? 'bg-white/10 hover:bg-white/20 text-white' 
+                    : 'bg-black/5 hover:bg-black/10 text-gray-900'
+                }`}
+                aria-label="Toggle Theme"
+              >
+                {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+              </button>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-2">
-            <button
-              onClick={toggleTheme}
-              className={`p-2 rounded-full transition-all duration-300 ${
-                isDarkMode 
-                  ? 'bg-white/10 hover:bg-white/20 text-white' 
-                  : 'bg-black/10 hover:bg-black/20 text-gray-900'
-              }`}
-            >
-              {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
+          <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`p-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
+              className={`p-2 rounded-md ${isDarkMode ? 'text-white hover:bg-white/10' : 'text-gray-900 hover:bg-black/10'}`}
+              aria-label="Open Menu"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -122,32 +116,45 @@ const Navigation: React.FC<NavigationProps> = ({ isDarkMode, toggleTheme }) => {
         {isOpen && (
           <div className={`md:hidden absolute top-full left-0 right-0 ${
             isDarkMode 
-              ? 'bg-black/90 backdrop-blur-lg border-b border-white/10' 
-              : 'bg-white/90 backdrop-blur-lg border-b border-black/10'
+              ? 'bg-black/90 backdrop-blur-lg border-t border-white/10' 
+              : 'bg-white/90 backdrop-blur-lg border-t border-black/10'
           }`}>
-            <div className="px-4 py-6 space-y-4">
+            <div className="px-4 pt-4 pb-6 space-y-4">
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`block w-full text-left ${
+                  className={`block w-full text-left text-lg ${
                     isDarkMode ? 'text-white/80 hover:text-white' : 'text-gray-700 hover:text-gray-900'
                   } transition-colors duration-300 py-2`}
                 >
                   {item.name}
                 </button>
               ))}
-              {/* Tombol Normal Mode untuk Mobile */}
-              <Link
-                to="/"
-                className={`block w-full text-left py-2 transition-colors duration-300 mt-4 border-t pt-4 ${
-                  isDarkMode
-                    ? 'text-cyan-400 hover:text-cyan-300 border-white/10'
-                    : 'text-blue-600 hover:text-blue-500 border-black/10'
-                }`}
-              >
-                Normal Mode
-              </Link>
+              
+              {/* Mobile Toggles */}
+              <div className={`flex items-center justify-center gap-6 pt-4 mt-4 border-t ${isDarkMode ? 'border-white/10' : 'border-black/10'}`}>
+                <Link
+                  to="/"
+                  className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 ${
+                    isDarkMode ? 'bg-white/10 text-white/80 hover:bg-white/20' : 'bg-black/5 text-gray-800 hover:bg-black/10'
+                  }`}
+                  aria-label="Switch to Normal Mode"
+                >
+                  2D
+                </Link>
+                <button
+                  onClick={toggleTheme}
+                  className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
+                    isDarkMode 
+                      ? 'bg-white/10 hover:bg-white/20 text-white' 
+                      : 'bg-black/5 hover:bg-black/10 text-gray-900'
+                  }`}
+                  aria-label="Toggle Theme"
+                >
+                  {isDarkMode ? <Sun size={24} /> : <Moon size={24} />}
+                </button>
+              </div>
             </div>
           </div>
         )}

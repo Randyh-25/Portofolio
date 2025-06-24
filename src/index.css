@@ -26,6 +26,10 @@
   .gradient-text {
     @apply bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent;
   }
+
+  .dark .dark-gradient-text {
+    @apply bg-gradient-to-r from-slate-300 to-slate-500;
+  }
   
   .skill-chip {
     @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors;
