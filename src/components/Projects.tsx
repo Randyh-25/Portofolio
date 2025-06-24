@@ -54,7 +54,7 @@ export const projects: ProjectItem[] = [
     ],
   },
   {
-    title: 'Project UMKM',
+    title: 'Project DigiVill',
     description: 'Web platform promoting local village MSMEs and digital products.',
     technologies: ['Typescript', 'Next.js', 'Express.js', 'MongoDB'],
     githubUrl: 'https://github.com/Randyh-25',
