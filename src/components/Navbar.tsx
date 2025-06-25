@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X, Sun, Moon, Gift } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../hooks/useTheme';
 
@@ -74,7 +74,7 @@ const Navbar: React.FC = () => {
                 }`}
                 aria-label="Switch to 3D Mode"
               >
-                3D
+                <Gift size={22} />
               </Link>
               <button
                 onClick={toggleTheme}
@@ -126,9 +126,9 @@ const Navbar: React.FC = () => {
                     ? 'bg-cyan-400 text-white shadow-lg shadow-cyan-500/50'
                     : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600'
                 }`}
-                aria-label="Toggle 3D Mode"
+                aria-label="Switch to 3D Mode"
               >
-                3D
+                <Gift size={26} />
               </Link>
               <button
                 onClick={toggleTheme}

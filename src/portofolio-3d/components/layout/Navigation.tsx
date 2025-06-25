@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X, Sun, Moon, Gift } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 interface NavigationProps {
@@ -84,7 +84,7 @@ const Navigation: React.FC<NavigationProps> = ({ isDarkMode, toggleTheme }) => {
                 }`}
                 aria-label="Switch to Normal Mode"
               >
-                2D
+                <Gift size={22} />
               </Link>
               <button
                 onClick={toggleTheme}
@@ -141,7 +141,7 @@ const Navigation: React.FC<NavigationProps> = ({ isDarkMode, toggleTheme }) => {
                   }`}
                   aria-label="Switch to Normal Mode"
                 >
-                  2D
+                  <Gift size={26} />
                 </Link>
                 <button
                   onClick={toggleTheme}
