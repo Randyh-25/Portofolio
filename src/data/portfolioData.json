@@ -116,6 +116,34 @@
 
   "projects": [
     {
+      "slug": "sumateran-roar",
+      "title": "Project Sumateran Roar",
+      "summary": "Dead by Daylight-inspired multiplayer horror game set in Sumatra.",
+      "status": "Ongoing",
+      "period": {
+        "start": "2025-09",
+        "end": null
+      },
+      "tech": ["Unity", "C#", "Network Game Object (NGO)", "Blender"],
+      "category": ["Game"],
+      "screenshots": [
+        {
+          "url": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1762310965/Screenshot_233_uepyke.png",
+          "caption": "On Development"
+        },
+        {
+          "url": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1762310964/Screenshot_234_ot6pl3.png",
+          "caption": "On Development"
+        }
+      ],
+      "demoUrl": "-",
+      "repoUrl": "https://github.com/AdapterAC/SumateranRoar",
+      "outcomes": [
+        "Immersive multiplayer horror experience",
+        "Unique setting and storyline based on Sumatra"
+      ]
+    },
+    {
       "slug": "toomuchpixel",
       "title": "Too Much Pixels",
       "summary": "2D top-down survival pixel-art game with engaging gameplay mechanics and retro aesthetics.",
@@ -276,34 +304,6 @@
       "outcomes": [
         "Real-time weather updates for users",
         "Improved user experience with accurate weather information"
-      ]
-    },
-    {
-      "slug": "sumateran-roar",
-      "title": "Project Sumateran Roar",
-      "summary": "Dead by Daylight-inspired multiplayer horror game set in Sumatra.",
-      "status": "Ongoing",
-      "period": {
-        "start": "2025-09",
-        "end": null
-      },
-      "tech": ["Unity", "C#", "Network Game Object (NGO)", "Blender"],
-      "category": ["Game"],
-      "screenshots": [
-        {
-          "url": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1762310965/Screenshot_233_uepyke.png",
-          "caption": "On Development"
-        },
-        {
-          "url": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1762310964/Screenshot_234_ot6pl3.png",
-          "caption": "On Development"
-        }
-      ],
-      "demoUrl": "-",
-      "repoUrl": "https://github.com/AdapterAC/SumateranRoar",
-      "outcomes": [
-        "Immersive multiplayer horror experience",
-        "Unique setting and storyline based on Sumatra"
       ]
     }
   ]
