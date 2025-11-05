@@ -25,6 +25,7 @@ function App() {
       </div>
 
   <main className="flex-1 pb-24 overflow-hidden">
+        <div key={activeTab}>
         <WindowFrame
           title={
             activeTab === 'home' ? 'Home' :
@@ -70,7 +71,8 @@ function App() {
         {activeTab === 'contact' && (
           <ContactTab links={portfolioData.profile.links} />
         )}
-        </WindowFrame>
+  </WindowFrame>
+  </div>
       </main>
 
       {/* Bottom dock */}
