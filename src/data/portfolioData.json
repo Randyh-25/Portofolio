@@ -1,0 +1,310 @@
+{
+  "profile": {
+    "name": "Randy Hendriyawan",
+    "role": "Game Developer & Software Engineer",
+    "tagline": "Creating immersive experiences through code and creativity.",
+    "avatar": "https://raw.githubusercontent.com/Randyh-25/Portofolio/refs/heads/main/src/assets/profile.jpg",
+    "education": "Undergraduate Student at Sumatera Institute of Technology, Major in Informatics Engineering",
+    "softSkills": ["Problem Solving", "Team Collaboration", "Communication", "Critical Thinking", "Time Management"],
+    "technicalSkills": ["JavaScript", "TypeScript", "React", "Node.js", "Python", "C++", "C#", "Unity C#"],
+    "bio": [
+      "I’m Randy Hendriyawan, an undergraduate student majoring in Informatics Engineering at Institut Teknologi Sumatera (ITERA). I’m a developer and game creator with a strong passion for technology, digital media, and interactive design.",
+      "My work spans web development, game development, and content creation, combining technical precision with creativity. I enjoy turning ideas into functional and engaging digital experiences from building scalable web platforms to designing immersive gameplay mechanics.",
+      "With hands-on experience in full-stack development, Unity, and UE4, I focus on writing clean, maintainable code and building user-centered solutions. I’m also deeply interested in blending education, interactivity, and entertainment through technology.",
+      "When I’m not coding or designing, I explore emerging tech trends, contribute to open-source projects, and collaborate on innovative student initiatives that drive learning and creativity."
+    ],
+    "links": {
+      "github": "https://github.com/Randyh-25",
+      "linkedin": "https://www.linkedin.com/in/randyhendriyawan/",
+      "email": "randyhendriyawan@gmail.com"
+    }
+  },
+  "experience": [
+  {
+    "slug": "website-division-public-relations",
+    "org": "Informatics Department ITERA",
+    "role": "Website Division – Public Relations",
+    "period": {
+      "start": "2024-10",
+      "end": "2025-10"
+    },
+    "location": "Bandar Lampung, Indonesia",
+    "summary": "Managed and published articles for the Informatics Department website, enhancing outreach and engagement.",
+    "highlights": [
+      "Wrote and published news and academic articles",
+      "Improved content accessibility and design",
+      "Collaborated with student teams to manage website updates"
+    ],
+    "tech": ["HTML", "CSS", "JavaScript", "WordPress"],
+    "links": []
+  },
+    {
+    "slug": "assistant-practicum-cpp",
+    "org": "Institut Teknologi Sumatera (ITERA)",
+    "role": "Assistant Practicum – C++ Programming",
+    "period": {
+      "start": "2025-02",
+      "end": "2025-05"
+    },
+    "location": "Bandar Lampung, Indonesia",
+    "summary": "Guided students in C++ programming fundamentals and evaluated laboratory exercises.",
+    "highlights": [
+      "Mentored first-year students in programming basics",
+      "Designed and reviewed weekly lab assignments",
+      "Supported collaborative learning during lab sessions"
+    ],
+    "tech": ["C++", "VS Code", "Linux"],
+    "links": []
+  },
+  {
+    "slug": "website-division-accreditation",
+    "org": "Informatics Department ITERA",
+    "role": "Website Division – Accreditation Team",
+    "period": {
+      "start": "2024-05",
+      "end": "2024-12"
+    },
+    "location": "Bandar Lampung, Indonesia",
+    "summary": "Developed a study program website to support 'Baik' accreditation achievement.",
+    "highlights": [
+      "Built and maintained department accreditation website",
+      "Ensured compliance with academic accreditation standards",
+      "Contributed to documentation and data presentation"
+    ],
+    "tech": ["Laravel", "PHP", "MySQL"],
+    "links": []
+  },
+  {
+    "slug": "group-guide-campus-orientation",
+    "org": "Institut Teknologi Sumatera (ITERA)",
+    "role": "Group Guide – Campus Orientation",
+    "period": {
+      "start": "2024-08",
+      "end": "2024-08"
+    },
+    "location": "Bandar Lampung, Indonesia",
+    "summary": "Mentored new students during campus orientation and academic adaptation programs.",
+    "highlights": [
+      "Guided freshmen through orientation events",
+      "Provided mentorship on academic and social adjustment",
+      "Coordinated group activities and campus tours"
+    ],
+    "tech": [],
+    "links": []
+  },
+  {
+    "slug": "content-editor-alfaris",
+    "org": "SMAN 3 Medan",
+    "role": "Content Editor – Al-Faris Organization",
+    "period": {
+      "start": "2020-08",
+      "end": "2021-07"
+    },
+    "location": "Medan, Indonesia",
+    "summary": "Created digital content and led campaigns that increased organization engagement by 10%.",
+    "highlights": [
+      "Managed editorial content across social media platforms",
+      "Developed visual and written content for campaigns",
+      "Contributed to member growth through outreach initiatives"
+    ],
+    "tech": ["Canva", "Instagram", "Copywriting"],
+    "links": []
+  }
+],
+
+
+
+  "projects": [
+    {
+      "slug": "toomuchpixel",
+      "title": "Too Much Pixels",
+      "summary": "2D top-down survival pixel-art game with engaging gameplay mechanics and retro aesthetics.",
+      "status": "Done",
+      "period": {
+        "start": "2025-05",
+        "end": "2025-08"
+      },
+      "tech": ["Pygme", "Python", "Aseprite", "Tiled", "Git"],
+      "category": ["Game", "2D", "Indie"],
+      "screenshots": [
+        {
+          "url": "https://raw.githubusercontent.com/Randyh-25/TooMuchPixels/refs/heads/main/img/SS%20(1).png",
+          "caption": "Intro Scene"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Randyh-25/TooMuchPixels/refs/heads/main/img/SS%20(2).png",
+          "caption": "Main Menu"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Randyh-25/TooMuchPixels/refs/heads/main/img/SS%20(3).png",
+          "caption": "Gameplay Scene"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Randyh-25/TooMuchPixels/refs/heads/main/img/SS%20(4).png",
+          "caption": "Coop Gameplay"
+        }
+      ],
+      "demoUrl": "https://github.com/Randyh-25/TooMuchPixels/releases",
+      "repoUrl": "https://github.com/Randyh-25/TooMuchPixels",
+      "outcomes": [
+        "Featured in local indie game showcases",
+        "Positive reviews from players for gameplay and art style",
+        "Implemented multiplayer coop mode enhancing user engagement"
+      ]
+    },
+    {
+      "slug": "pic-sorter",
+      "title": "Pic-Sorter",
+      "summary": "Tool for automatic image organization and tagging.",
+      "status": "Done",
+      "period": {
+        "start": "2025-04",
+        "end": "2025-04"
+      },
+      "tech": ["Python", "Tkinter"],
+      "category": ["Application", "Utility"],
+      "screenshots": [
+        {
+          "url": "https://raw.githubusercontent.com/Randyh-25/Pic-Sorter/refs/heads/main/Screenshoot/1.TentukanJumlahKategori.png",
+          "caption": "Kategori"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Randyh-25/Pic-Sorter/refs/heads/main/Screenshoot/2.MasukanKategori.png",
+          "caption": "Membuat Kategori"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Randyh-25/Pic-Sorter/refs/heads/main/Screenshoot/3.%20Sortir.png",
+          "caption": "Hasil Pengelompokan Gambar"
+        }
+      ],
+      "demoUrl": "https://github.com/Randyh-25/Pic-Sorter/releases",
+      "repoUrl": "https://github.com/Randyh-25/Pic-Sorter",
+      "outcomes": [
+        "Automated image sorting process, saving users time"
+      ]
+    },
+    {
+      "slug": "digivill",
+      "title": "Project Digivill",
+      "summary": "Web platform promoting local village MSMEs and digital products.",
+      "status": "Done",
+      "period": {
+        "start": "2025-07",
+        "end": "2025-08"
+      },
+      "tech": ["React", "JavaScript", "MongoDB", "Express", "Node.js"],
+      "category": ["Web"],
+      "screenshots": [
+        {
+          "url": "https://raw.githubusercontent.com/Randyh-25/Project-DigiVill/refs/heads/main/img/SS%20(1).png",
+          "caption": "Landing Page"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Randyh-25/Project-DigiVill/refs/heads/main/img/SS%20(2).png",
+          "caption": "MSME Listings"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Randyh-25/Project-DigiVill/refs/heads/main/img/SS%20(3).png",
+          "caption": "Product Details"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Randyh-25/Project-DigiVill/refs/heads/main/img/SS%20(4).png",
+          "caption": "User Dashboard"
+        }
+      ],
+      "demoUrl": "",
+      "repoUrl": "https://github.com/Randyh-25/Project-DigiVill",
+      "outcomes": [
+        "Easier access to local MSME products",
+        "Increased online visibility for village businesses"
+      ]
+    },
+    {
+      "slug": "space3d",
+      "title": "Project Space3D",
+      "summary": "A 3D space exploration game.",
+      "status": "Done",
+      "period": {
+        "start": "2025-06",
+        "end": "2025-06"
+      },
+      "tech": ["Three.js", "JavaScript"],
+      "category": ["Web", "Game"],
+      "screenshots": [
+        {
+          "url": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1762310889/78679cd1-3e39-4c89-8979-a4db51fa701e.png",
+          "caption": "Gameplay Scene"
+        }
+      ],
+      "demoUrl": "https://space3-d-umber.vercel.app/",
+      "repoUrl": "https://github.com/Randyh-25/Space3D",
+      "outcomes": [
+        "Simple 3D navigation and exploration experience"
+      ]
+    },
+    {
+      "slug": "waag",
+      "title": "Weather at a Glance (WAAG)",
+      "summary": "A web application providing real-time weather updates.",
+      "status": "Done",
+      "period": {
+        "start": "2025-11",
+        "end": "2025-11"
+      },
+      "tech": ["JavaScript", "React", "OpenWeatherMap API"],
+      "category": ["Web", "Application"],
+      "screenshots": [
+        {
+          "url": "https://raw.githubusercontent.com/Randyh-25/uts-pemweb-122140171/refs/heads/main/SS/1.png",
+          "caption": "Weather Dashboard"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Randyh-25/uts-pemweb-122140171/refs/heads/main/SS/2.png",
+          "caption": "City Search"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Randyh-25/uts-pemweb-122140171/refs/heads/main/SS/3.png",
+          "caption": "Detailed Weather Info"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Randyh-25/uts-pemweb-122140171/refs/heads/main/SS/4.png",
+          "caption": "Responsive Design"
+        }
+      ],
+      "demoUrl": "https://uts-pemweb-122140171.vercel.app/",
+      "repoUrl": "https://github.com/Randyh-25/uts-pemweb-122140171",
+      "outcomes": [
+        "Real-time weather updates for users",
+        "Improved user experience with accurate weather information"
+      ]
+    },
+    {
+      "slug": "sumateran-roar",
+      "title": "Project Sumateran Roar",
+      "summary": "Dead by Daylight-inspired multiplayer horror game set in Sumatra.",
+      "status": "Ongoing",
+      "period": {
+        "start": "2025-09",
+        "end": null
+      },
+      "tech": ["Unity", "C#", "Network Game Object (NGO)", "Blender"],
+      "category": ["Game"],
+      "screenshots": [
+        {
+          "url": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1762310965/Screenshot_233_uepyke.png",
+          "caption": "On Development"
+        },
+        {
+          "url": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1762310964/Screenshot_234_ot6pl3.png",
+          "caption": "On Development"
+        }
+      ],
+      "demoUrl": "-",
+      "repoUrl": "https://github.com/AdapterAC/SumateranRoar",
+      "outcomes": [
+        "Immersive multiplayer horror experience",
+        "Unique setting and storyline based on Sumatra"
+      ]
+    }
+  ]
+}
