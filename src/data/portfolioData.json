@@ -21,6 +21,24 @@
   },
   "experience": [
   {
+    "slug": "pdd-division-kkn-itera",
+    "org": "Institut Teknologi Sumatera (ITERA)",
+    "role": "PDD Division – Community Service Program (KKN)",
+    "period": {
+      "start": "2024-07",
+      "end": "2024-08"
+    },
+    "location": "Desa Galih Lunik, Lampung Selatan, Lampung, Indonesia",
+    "summary": "Led the PDD Division in organizing and executing community service activities during the KKN program.",
+    "highlights": [
+      "Coordinated logistics and resources for community projects",
+      "Facilitated communication between students and local residents",
+      "Ensured successful implementation of service initiatives"
+    ],
+    "tech": [],
+    "links": []
+  },
+  {
     "slug": "website-division-public-relations",
     "org": "Informatics Department ITERA",
     "role": "Website Division – Public Relations",
