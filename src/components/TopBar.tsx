@@ -19,8 +19,8 @@ export const TopBar = () => {
           <span className="hidden sm:inline text-gray-500">•</span>
           <span className="hidden sm:inline text-gray-600">Portfolio</span>
         </div>
-        <div className="text-sm font-heading font-semibold text-brand select-none">{time}</div>
-        <div className="flex items-center gap-3 text-gray-600">
+        <div className="hidden md:block text-sm font-heading font-semibold text-brand select-none">{time}</div>
+        <div className="hidden md:flex items-center gap-3 text-gray-600">
           <Wifi size={16} />
           <Volume2 size={16} />
           <Battery size={16} />
