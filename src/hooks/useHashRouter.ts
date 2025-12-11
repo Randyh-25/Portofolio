@@ -2,27 +2,34 @@ import { useState, useEffect } from 'react';
 
 export type TabKey = 'home' | 'profile' | 'experience' | 'projects' | 'contact' | 'testimoni';
 
-export const useHashRouter = () => {
-  const getTabFromHash = (): TabKey => {
-    const hash = window.location.hash.slice(1);
-    const validTabs: TabKey[] = ['home', 'profile', 'experience', 'projects', 'contact', 'testimoni'];
-    return validTabs.includes(hash as TabKey) ? (hash as TabKey) : 'home';
-  };
+const validTabs: TabKey[] = ['home', 'profile', 'experience', 'projects', 'contact', 'testimoni'];
 
-  const [activeTab, setActiveTab] = useState<TabKey>(getTabFromHash);
+const getTabFromPath = (): TabKey => {
+  const path = window.location.pathname;
+  // Remove leading slash and convert to TabKey
+  const tab = path.replace(/^\//, '') || 'home';
+  return validTabs.includes(tab as TabKey) ? (tab as TabKey) : 'home';
+};
+
+export const useHashRouter = () => {
+  const [activeTab, setActiveTab] = useState<TabKey>(getTabFromPath);
 
   useEffect(() => {
-    const handleHashChange = () => {
-      setActiveTab(getTabFromHash());
+    const handlePopState = () => {
+      setActiveTab(getTabFromPath());
       window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
   const navigateToTab = (tab: TabKey) => {
-    window.location.hash = tab;
+    if (tab !== activeTab) {
+      window.history.pushState(null, '', `/${tab}`);
+      setActiveTab(tab);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   return { activeTab, navigateToTab };
