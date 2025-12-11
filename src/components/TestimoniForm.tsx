@@ -13,6 +13,7 @@ export const TestimoniForm = () => {
   });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+  const [hoveredRating, setHoveredRating] = useState<number | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -124,29 +125,48 @@ export const TestimoniForm = () => {
 
         {/* Rating */}
         <div>
-          <label className="block text-xs sm:text-sm font-body text-white/80 mb-3">
+          <label className="block text-xs sm:text-sm font-body text-white/80 mb-2">
             Rating <span className="text-red-400">*</span>
           </label>
-          <div className="flex gap-2">
-            {[1, 2, 3, 4, 5].map(star => (
-              <button
-                key={star}
-                type="button"
-                onClick={() => !loading && setFormData(prev => ({ ...prev, rating: star }))}
-                disabled={loading}
-                className="transition-transform hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <Star
-                  size={24}
-                  className={`transition-all ${
-                    formData.rating >= star 
-                      ? 'fill-accent text-accent' 
-                      : 'text-white/30 hover:text-white/50'
-                  }`}
-                />
-              </button>
-            ))}
+          <div className="flex items-center gap-3 mb-2">
+            <div 
+              className="flex gap-1"
+              onMouseLeave={() => setHoveredRating(null)}
+            >
+              {[1, 2, 3, 4, 5].map(star => {
+                const isActive = hoveredRating !== null ? star <= hoveredRating : star <= formData.rating;
+                return (
+                  <button
+                    key={star}
+                    type="button"
+                    onClick={() => !loading && setFormData(prev => ({ ...prev, rating: star }))}
+                    onMouseEnter={() => setHoveredRating(star)}
+                    disabled={loading}
+                    className="transition-all duration-200 hover:scale-125 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-accent rounded"
+                    aria-label={`Rate ${star} stars`}
+                  >
+                    <Star
+                      size={28}
+                      className={`transition-all duration-200 ${
+                        isActive
+                          ? 'fill-accent text-accent drop-shadow-lg' 
+                          : 'fill-none text-white/30 hover:text-white/50'
+                      }`}
+                    />
+                  </button>
+                );
+              })}
+            </div>
+            <span className="text-sm sm:text-base font-bold text-accent">
+              {hoveredRating || formData.rating} / 5
+            </span>
           </div>
+          <p className="text-[10px] sm:text-xs text-white/50">
+            {hoveredRating 
+              ? `Klik untuk memberikan ${hoveredRating} bintang`
+              : `Anda memberikan ${formData.rating} bintang`
+            }
+          </p>
         </div>
 
         {/* Komentar */}

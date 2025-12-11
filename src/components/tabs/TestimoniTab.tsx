@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Star, AlertCircle } from 'lucide-react';
 import { db } from '../../lib/firebase';
-import { collection, query, where, orderBy, onSnapshot } from 'firebase/firestore';
+import { collection, onSnapshot } from 'firebase/firestore';
 import { TestimoniForm } from '../TestimoniForm';
 
 interface Testimoni {
@@ -21,21 +21,35 @@ export const TestimoniTab = () => {
   const [filter, setFilter] = useState<number | null>(null);
 
   useEffect(() => {
-    // Query testimoni yang sudah approved
-    const q = query(
-      collection(db, 'testimoni'),
-      where('status', '==', 'approved'),
-      orderBy('createdAt', 'desc')
-    );
+    // Simplified query - fetch all first, then filter in code
+    const testimoniRef = collection(db, 'testimoni');
 
     const unsubscribe = onSnapshot(
-      q,
+      testimoniRef,
       snapshot => {
-        const data = snapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data(),
-        })) as Testimoni[];
-        setTestimoni(data);
+        console.log('Total documents:', snapshot.docs.length);
+        
+        const allData = snapshot.docs.map(doc => {
+          const data = doc.data();
+          console.log('Document:', doc.id, 'Status:', data.status);
+          return {
+            id: doc.id,
+            ...data,
+          };
+        }) as Testimoni[];
+
+        // Filter approved in code
+        const approvedData = allData.filter(item => item.status === 'approved');
+        console.log('Approved testimoni:', approvedData.length);
+        
+        // Sort by createdAt descending
+        approvedData.sort((a, b) => {
+          const dateA = a.createdAt?.seconds || 0;
+          const dateB = b.createdAt?.seconds || 0;
+          return dateB - dateA;
+        });
+        
+        setTestimoni(approvedData);
         setLoading(false);
       },
       error => {
