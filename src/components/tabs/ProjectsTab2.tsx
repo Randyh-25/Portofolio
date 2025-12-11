@@ -38,16 +38,20 @@ export const ProjectsTab = ({ projects }: ProjectsTabProps) => {
     return (
       <div id="panel-project-detail" className="w-full min-h-screen px-3 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="max-w-4xl mx-auto">
-          <button
-            onClick={() => {
-              setSelectedProject(null);
-              setScreenshotIndex(0);
-            }}
-            className="inline-flex items-center gap-2 mb-6 sm:mb-8 text-accent font-body text-sm sm:text-base hover:text-accent/80 transition-colors focus:outline-none focus:ring-2 focus:ring-accent rounded px-2 py-1"
-          >
-            <ArrowLeft size={18} />
-            Back to Projects
-          </button>
+          {/* Sticky Back Button */}
+          <div className="sticky top-20 z-10 mb-6 sm:mb-8">
+            <button
+              onClick={() => {
+                setSelectedProject(null);
+                setScreenshotIndex(0);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2 backdrop-blur-xl bg-accent/90 border border-accent/50 text-gray-900 font-body font-semibold text-sm sm:text-base hover:bg-accent transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent rounded-lg shadow-lg"
+            >
+              <ArrowLeft size={18} />
+              Back to Projects
+            </button>
+          </div>
 
           <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 sm:p-8 mb-6 sm:mb-8 shadow-xl">
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">

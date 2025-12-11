@@ -34,6 +34,7 @@ function App() {
                 tagline: portfolioData.profile.tagline,
                 avatar: portfolioData.profile.avatar,
               }}
+              links={portfolioData.profile.links}
               onNavigateToProfile={() => navigateToTab('profile')}
             />
           )}

@@ -14,6 +14,7 @@ export const useHashRouter = () => {
   useEffect(() => {
     const handleHashChange = () => {
       setActiveTab(getTabFromHash());
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     window.addEventListener('hashchange', handleHashChange);

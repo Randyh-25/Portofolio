@@ -206,22 +206,6 @@ export const ContactTab = ({ links }: ContactTabProps) => {
             </button>
           </form>
         </div>
-
-        {/* Social Links Section */}
-        <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 sm:p-8 text-center">
-          <h3 className="font-heading text-lg sm:text-xl font-bold text-white mb-4">Or connect with me on social media</h3>
-          <div className="flex justify-center gap-4 sm:gap-6">
-            <a href={links.github} target="_blank" rel="noopener noreferrer" className="p-3 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-white/20 hover:border-secondary/50 transition-all duration-300">
-              <Github size={24} />
-            </a>
-            <a href={links.linkedin} target="_blank" rel="noopener noreferrer" className="p-3 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-white/20 hover:border-accent/50 transition-all duration-300">
-              <Linkedin size={24} />
-            </a>
-            <a href={`mailto:${links.email}`} className="p-3 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-white/20 hover:border-accent/50 transition-all duration-300">
-              <Mail size={24} />
-            </a>
-          </div>
-        </div>
       </div>
     </div>
   );
