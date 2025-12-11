@@ -10,14 +10,19 @@ export const TestimoniForm = () => {
     perusahaan: '',
     rating: 5,
     komentar: '',
+    hideName: false,
   });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
   const [hoveredRating, setHoveredRating] = useState<number | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    const { name, value, type } = e.target as HTMLInputElement;
+    if (type === 'checkbox') {
+      setFormData(prev => ({ ...prev, [name]: (e.target as HTMLInputElement).checked }));
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -45,6 +50,7 @@ export const TestimoniForm = () => {
         perusahaan: formData.perusahaan.trim() || '',
         rating: parseInt(formData.rating.toString()),
         komentar: formData.komentar.trim(),
+        hideName: formData.hideName,
         createdAt: new Date(),
         status: 'pending',
       };
@@ -54,7 +60,7 @@ export const TestimoniForm = () => {
       await addDoc(testimoniRef, dataToSubmit);
 
       setMessage({ type: 'success', text: '✅ Testimonial sent successfully! Thank you!' });
-      setFormData({ nama: '', email: '', perusahaan: '', rating: 5, komentar: '' });
+      setFormData({ nama: '', email: '', perusahaan: '', rating: 5, komentar: '', hideName: false });
       
       // Hilangkan pesan setelah 5 detik
       setTimeout(() => setMessage(null), 5000);
@@ -187,6 +193,22 @@ export const TestimoniForm = () => {
           <p className="text-[10px] sm:text-xs text-white/50 mt-1">
             Minimum 10 characters
           </p>
+        </div>
+
+        {/* Privacy Option */}
+        <div className="flex items-center gap-2">
+          <input
+            id="hideName"
+            type="checkbox"
+            name="hideName"
+            checked={formData.hideName}
+            onChange={handleChange}
+            disabled={loading}
+            className="w-4 h-4 rounded border border-white/30 bg-white/10 text-accent focus:ring-2 focus:ring-accent cursor-pointer disabled:opacity-50"
+          />
+          <label htmlFor="hideName" className="text-xs sm:text-sm text-white/80 font-body cursor-pointer select-none">
+            Don't share my name (your name will be hidden)
+          </label>
         </div>
 
         {/* Status Message */}

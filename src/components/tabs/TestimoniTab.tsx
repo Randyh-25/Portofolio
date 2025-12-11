@@ -13,12 +13,39 @@ interface Testimoni {
   komentar: string;
   createdAt: any;
   status: string;
+  hideName?: boolean;
 }
 
 export const TestimoniTab = () => {
   const [testimoni, setTestimoni] = useState<Testimoni[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<number | null>(null);
+
+  // Censor name: Randy Hendriyawan -> R***y H*********n
+  const censorName = (name: string): string => {
+    return name.split(' ').map(word => {
+      if (word.length <= 2) return word;
+      return word[0] + '*'.repeat(word.length - 2) + word[word.length - 1];
+    }).join(' ');
+  };
+
+  // Censor email: randy@example.com -> r***y@e****e.com
+  const censorEmail = (email: string): string => {
+    if (!email) return '';
+    const [localPart, domain] = email.split('@');
+    if (!domain) return email;
+    
+    const censoredLocal = localPart.length <= 2 
+      ? localPart 
+      : localPart[0] + '*'.repeat(localPart.length - 2) + localPart[localPart.length - 1];
+    
+    const [domainName, ...domainExt] = domain.split('.');
+    const censoredDomain = domainName.length <= 2
+      ? domainName
+      : domainName[0] + '*'.repeat(domainName.length - 2) + domainName[domainName.length - 1];
+    
+    return `${censoredLocal}@${censoredDomain}.${domainExt.join('.')}`;
+  };
 
   useEffect(() => {
     // Simplified query - fetch all first, then filter in code
@@ -156,13 +183,18 @@ export const TestimoniTab = () => {
                   >
                     {/* Header */}
                     <div className="flex items-start justify-between gap-3 mb-3">
-                      <div>
+                      <div className="flex-1 min-w-0">
                         <h3 className="font-heading font-bold text-sm sm:text-base text-white">
-                          {item.nama}
+                          {item.hideName ? censorName(item.nama) : item.nama}
                         </h3>
                         {item.perusahaan && (
                           <p className="text-xs sm:text-sm text-secondary font-body">
                             {item.perusahaan}
+                          </p>
+                        )}
+                        {item.email && (
+                          <p className="text-[10px] sm:text-xs text-white/50 font-body truncate">
+                            {censorEmail(item.email)}
                           </p>
                         )}
                       </div>
