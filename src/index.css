@@ -10,12 +10,7 @@
   }
 
   body {
-    @apply font-body text-text-dark;
-  }
-
-  /* Lock outer scroll; only in-window scrolling is allowed */
-  html, body {
-    overflow: hidden;
+    @apply font-body text-white bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -33,19 +28,29 @@
     scrollbar-width: none;
   }
 
-  /* Subtle float animation for avatars or cards */
+  /* Subtle float animation for avatars */
   @keyframes float-slow {
     0% { transform: translateY(0px); }
-    50% { transform: translateY(-6px); }
+    50% { transform: translateY(-8px); }
     100% { transform: translateY(0px); }
   }
   .animate-float-slow {
     animation: float-slow 6s ease-in-out infinite;
   }
 
+  /* Glassmorphism effect */
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+  }
+  .animate-pulse-slow {
+    animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
   /* Respect reduced-motion preferences */
   @media (prefers-reduced-motion: reduce) {
-    .animate-float-slow {
+    .animate-float-slow,
+    .animate-pulse {
       animation: none !important;
     }
   }

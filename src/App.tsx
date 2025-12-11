@@ -8,74 +8,62 @@ import { ProjectsTab } from './components/tabs/ProjectsTab2';
 import { ContactTab } from './components/tabs/ContactTab';
 import portfolioData from './data/portfolioData.json';
 import { TopBar } from './components/TopBar';
-import { WindowFrame } from './components/WindowFrame';
 
 function App() {
   const { activeTab, navigateToTab } = useHashRouter();
   useKeyboardShortcuts(activeTab, navigateToTab);
 
   return (
-    <div className="relative h-full flex flex-col overflow-hidden bg-gradient-to-br from-surface via-white to-surface">
-      <TopBar />
-      {/* Decorative gradient wallpaper */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -top-28 -left-24 h-72 w-72 rounded-full bg-primary/25 blur-3xl" />
-        <div className="absolute top-1/3 -right-24 h-96 w-96 rounded-full bg-secondary/25 blur-3xl" />
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 h-72 w-72 rounded-full bg-accent/40 blur-3xl" />
+    <div className="relative min-h-screen flex flex-col bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900">
+      {/* Animated background gradients */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-primary/20 blur-3xl animate-pulse"></div>
+        <div className="absolute top-1/3 -right-40 h-96 w-96 rounded-full bg-secondary/20 blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-96 w-96 rounded-full bg-accent/20 blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
       </div>
 
-  <main className="flex-1 pb-24 overflow-hidden">
-        <div key={activeTab}>
-        <WindowFrame
-          title={
-            activeTab === 'home' ? 'Home' :
-            activeTab === 'profile' ? 'Profile' :
-            activeTab === 'experience' ? 'Experience' :
-            activeTab === 'projects' ? 'Projects' :
-            'Contact'
-          }
-          icon={null}
-        >
-        {activeTab === 'home' && (
-          <HomeTab
-            profile={{
-              name: portfolioData.profile.name,
-              role: portfolioData.profile.role,
-              tagline: portfolioData.profile.tagline,
-              avatar: portfolioData.profile.avatar,
-            }}
-            onNavigateToProfile={() => navigateToTab('profile')}
-          />
-        )}
+      <TopBar />
 
-        {activeTab === 'profile' && (
-          <ProfileTab
-            profile={{
-              bio: portfolioData.profile.bio,
-              education: portfolioData.profile.education,
-              softSkills: portfolioData.profile.softSkills,
-              technicalSkills: portfolioData.profile.technicalSkills,
-            }}
-            onNavigateToExperience={() => navigateToTab('experience')}
-          />
-        )}
+      <main className="flex-1 pb-32">
+        <div key={activeTab} className="w-full">
+          {activeTab === 'home' && (
+            <HomeTab
+              profile={{
+                name: portfolioData.profile.name,
+                role: portfolioData.profile.role,
+                tagline: portfolioData.profile.tagline,
+                avatar: portfolioData.profile.avatar,
+              }}
+              onNavigateToProfile={() => navigateToTab('profile')}
+            />
+          )}
 
-        {activeTab === 'experience' && (
-          <ExperienceTab experiences={portfolioData.experience} />
-        )}
+          {activeTab === 'profile' && (
+            <ProfileTab
+              profile={{
+                bio: portfolioData.profile.bio,
+                education: portfolioData.profile.education,
+                softSkills: portfolioData.profile.softSkills,
+                technicalSkills: portfolioData.profile.technicalSkills,
+              }}
+              onNavigateToExperience={() => navigateToTab('experience')}
+            />
+          )}
 
-        {activeTab === 'projects' && (
-          <ProjectsTab projects={portfolioData.projects} />
-        )}
+          {activeTab === 'experience' && (
+            <ExperienceTab experiences={portfolioData.experience} />
+          )}
 
-        {activeTab === 'contact' && (
-          <ContactTab links={portfolioData.profile.links} />
-        )}
-  </WindowFrame>
-  </div>
+          {activeTab === 'projects' && (
+            <ProjectsTab projects={portfolioData.projects} />
+          )}
+
+          {activeTab === 'contact' && (
+            <ContactTab links={portfolioData.profile.links} />
+          )}
+        </div>
       </main>
 
-      {/* Bottom dock */}
       <TabNavigation activeTab={activeTab} onTabChange={navigateToTab} />
     </div>
   );

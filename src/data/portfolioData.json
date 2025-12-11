@@ -134,10 +134,49 @@
 
   "projects": [
     {
+  "slug": "skined-ai-skin-detection",
+  "title": "Project SkinEd: AI Skin Type Detection",
+  "summary": "AI-powered facial skin classification system using ResNet50 and web-based interface.",
+  "status": "Completed",
+  "period": {
+    "start": "2024-09",
+    "end": "2025-01"
+  },
+  "tech": ["Python", "PyTorch", "ResNet50", "Flask", "OpenCV", "HTML/CSS/JS"],
+  "category": ["Machine Learning", "Computer Vision", "Health Tech"],
+  "screenshots": [
+    {
+      "url": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1765431701/DSC_9454_fhhixq.jpg",
+      "caption": "Featured in Informatics Expo ITERA 2025"
+    },
+    {
+      "url": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1765431319/o1_hqfpat.jpg",
+      "caption": "Main interface – upload and detection page"
+    },
+    {
+      "url": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1765431317/o2_m7j3lf.jpg",
+      "caption": "AI loading"
+    },
+    {
+      "url": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1765431318/o3_qukdhy.jpg",
+      "caption": "Detection result with skin type and recommendations"
+    }
+  ],
+  "demoUrl": null,
+  "repoUrl": "https://github.com/Randyh-25/SkinEd",
+  "outcomes": [
+    "Successfully implemented ResNet50 fine-tuned for 3-class skin type recognition (normal, dry, oily)",
+    "Achieved high evaluation performance with ROC-AUC > 0.90 for all classes",
+    "Integrated live inference through Haar-Cascade face detection and Flask backend",
+    "Showcased at Informatics Expo 2025 as an applied AI project"
+  ]
+},
+
+    {
       "slug": "sumateran-roar",
       "title": "Project Sumateran Roar",
       "summary": "Dead by Daylight-inspired multiplayer horror game set in Sumatra.",
-      "status": "Ongoing",
+      "status": "Done",
       "period": {
         "start": "2025-09",
         "end": null
@@ -145,6 +184,18 @@
       "tech": ["Unity", "C#", "Network Game Object (NGO)", "Blender"],
       "category": ["Game"],
       "screenshots": [
+        {
+          "url": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1765431486/IMG_1708_krvmvo.jpg",
+          "caption": "Featured in Informatics Expo ITERA 2025"
+        },
+        {
+          "url": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1765431535/IMG_1681_uignol.jpg",
+          "caption": "People testing the game at Informatics Expo ITERA 2025"
+        },
+        {
+          "url": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1765431714/Screenshot_763_u8c6i8.png",
+          "caption": "Multiplayer Gameplay"
+        },
         {
           "url": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1762310965/Screenshot_233_uepyke.png",
           "caption": "On Development"
@@ -154,11 +205,12 @@
           "caption": "On Development"
         }
       ],
-      "demoUrl": "-",
+      "demoUrl": "https://sumateranroar.itch.io/sumateranroar",
       "repoUrl": "https://github.com/AdapterAC/SumateranRoar",
       "outcomes": [
         "Immersive multiplayer horror experience",
-        "Unique setting and storyline based on Sumatra"
+        "Unique setting and storyline based on Sumatra",
+        "Featured in Informatics Expo ITERA 2025"
       ]
     },
     {

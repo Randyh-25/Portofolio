@@ -48,30 +48,30 @@ export const ExperienceTab = ({ experiences }: ExperienceTabProps) => {
     return (
       <div
         id="panel-experience-detail"
-        className="flex-1 px-8 py-12 bg-white overflow-y-auto"
+        className="w-full min-h-screen px-3 sm:px-6 lg:px-8 py-12 sm:py-16"
       >
         <div className="max-w-4xl mx-auto">
           <button
             onClick={() => setSelectedExperience(null)}
             className="
-              inline-flex items-center gap-2 mb-6 text-primary font-body
-              hover:text-primary/80 transition-colors
-              focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 rounded px-2 py-1
+              inline-flex items-center gap-2 mb-6 sm:mb-8 text-accent font-body text-sm sm:text-base
+              hover:text-accent/80 transition-colors
+              focus:outline-none focus:ring-2 focus:ring-accent rounded px-2 py-1
             "
           >
-            <ArrowLeft size={20} />
+            <ArrowLeft size={18} />
             Back to Experience
           </button>
 
-          <div className="mb-6">
-            <h2 className="font-heading text-3xl font-bold text-brand mb-2">
+          <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 sm:p-8 mb-6 sm:mb-8 shadow-xl">
+            <h2 className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2 sm:mb-3">
               {selectedExperience.role}
             </h2>
-            <h3 className="font-heading text-xl text-primary mb-4">
+            <h3 className="font-heading text-lg sm:text-xl text-accent mb-4 sm:mb-6">
               {selectedExperience.org}
             </h3>
 
-            <div className="flex flex-wrap gap-4 text-sm text-gray-600 font-body mb-6">
+            <div className="flex flex-wrap gap-3 sm:gap-6 text-xs sm:text-sm text-white/70 font-body">
               <div className="flex items-center gap-2">
                 <Calendar size={16} />
                 {formatPeriod(selectedExperience.period)}
@@ -83,43 +83,45 @@ export const ExperienceTab = ({ experiences }: ExperienceTabProps) => {
             </div>
           </div>
 
-          <div className="mb-8">
-            <h4 className="font-heading text-lg font-semibold text-brand mb-3">Overview</h4>
-            <p className="font-body text-base text-gray-700 leading-relaxed">
+          <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 sm:p-8 mb-6 sm:mb-8 shadow-xl">
+            <h4 className="font-heading text-base sm:text-lg lg:text-xl font-bold text-white mb-4">Overview</h4>
+            <p className="font-body text-sm sm:text-base text-white/80 leading-relaxed">
               {selectedExperience.summary}
             </p>
           </div>
 
-          <div className="mb-8">
-            <h4 className="font-heading text-lg font-semibold text-brand mb-3">Key Achievements</h4>
-            <ul className="space-y-3">
+          <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 sm:p-8 mb-6 sm:mb-8 shadow-xl">
+            <h4 className="font-heading text-base sm:text-lg lg:text-xl font-bold text-white mb-4">Key Achievements</h4>
+            <ul className="space-y-2 sm:space-y-3">
               {selectedExperience.highlights.map((highlight, index) => (
-                <li key={index} className="flex gap-3">
-                  <span className="text-secondary font-bold mt-1">•</span>
-                  <span className="font-body text-base text-gray-700">{highlight}</span>
+                <li key={index} className="flex gap-2 sm:gap-3">
+                  <span className="text-secondary font-bold flex-shrink-0 mt-0.5">•</span>
+                  <span className="font-body text-sm sm:text-base text-white/80">{highlight}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="mb-8">
-            <h4 className="font-heading text-lg font-semibold text-brand mb-3">Technologies</h4>
-            <div className="flex flex-wrap gap-2">
-              {selectedExperience.tech.map((tech) => (
-                <span
-                  key={tech}
-                  className="px-3 py-1 rounded-md font-body text-sm bg-gray-100 text-gray-700"
-                >
-                  {tech}
-                </span>
-              ))}
+          {selectedExperience.tech.length > 0 && (
+            <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 sm:p-8 mb-6 sm:mb-8 shadow-xl">
+              <h4 className="font-heading text-base sm:text-lg lg:text-xl font-bold text-white mb-4">Technologies</h4>
+              <div className="flex flex-wrap gap-2 sm:gap-3">
+                {selectedExperience.tech.map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-body text-xs sm:text-sm bg-white/10 border border-white/20 text-white/80 hover:border-accent/50 transition-all duration-300"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           {selectedExperience.links.length > 0 && (
-            <div>
-              <h4 className="font-heading text-lg font-semibold text-brand mb-3">Links</h4>
-              <div className="space-y-2">
+            <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 sm:p-8 shadow-xl">
+              <h4 className="font-heading text-base sm:text-lg lg:text-xl font-bold text-white mb-4">Links</h4>
+              <div className="space-y-2 sm:space-y-3">
                 {selectedExperience.links.map((link, index) => (
                   <a
                     key={index}
@@ -127,11 +129,11 @@ export const ExperienceTab = ({ experiences }: ExperienceTabProps) => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="
-                      inline-flex items-center gap-2 text-primary font-body
-                      hover:text-primary/80 transition-colors
+                      inline-flex items-center gap-2 text-accent font-body text-sm sm:text-base
+                      hover:text-accent/80 transition-colors break-all
                     "
                   >
-                    <ExternalLink size={16} />
+                    <ExternalLink size={16} className="flex-shrink-0" />
                     {link}
                   </a>
                 ))}
@@ -148,53 +150,50 @@ export const ExperienceTab = ({ experiences }: ExperienceTabProps) => {
       id="panel-experience"
       role="tabpanel"
       aria-labelledby="tab-experience"
-      className="flex-1 px-8 py-12 bg-white"
+      className="w-full min-h-screen px-3 sm:px-6 lg:px-8 py-12 sm:py-16"
     >
-      <div className="max-w-4xl mx-auto">
-        <h2 className="font-heading text-3xl font-bold text-brand mb-8">Experience</h2>
+      <div className="max-w-6xl mx-auto">
+        <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-accent via-secondary to-white bg-clip-text text-transparent mb-8 sm:mb-12">Experience</h2>
 
-        <div className="space-y-6">
-          {experiences.map((exp, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          {experiences.map((exp) => (
             <button
               key={exp.slug}
               onClick={() => setSelectedExperience(exp)}
               className="
-                w-full text-left p-6 rounded-lg border border-gray-200
-                hover:border-primary/30 hover:shadow-md
-                transition-all duration-200 bg-white
-                focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2
+                text-left backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl p-4 sm:p-6
+                hover:bg-white/15 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/20
+                transition-all duration-300
+                focus:outline-none focus:ring-2 focus:ring-accent
               "
             >
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 mb-3">
-                <div className="min-w-0">
-                  <h3 className="font-heading text-xl font-semibold text-brand mb-1 break-words">
-                    {exp.role}
-                  </h3>
-                  <p className="font-body text-lg text-primary">{exp.org}</p>
-                </div>
-                <span className="
-                  px-3 py-1 rounded-full text-xs font-body bg-secondary/10 text-secondary
-                  whitespace-nowrap flex-shrink-0 self-start sm:self-auto mt-1 sm:mt-0
-                ">
-                  {formatPeriod(exp.period)}
-                </span>
+              <div className="mb-3 sm:mb-4">
+                <h3 className="font-heading text-base sm:text-lg lg:text-xl font-bold text-white break-words mb-1">
+                  {exp.role}
+                </h3>
+                <p className="font-body text-sm sm:text-base text-accent">{exp.org}</p>
               </div>
 
-              <p className="font-body text-sm text-gray-600 mb-4">
+              <div className="flex items-center gap-2 mb-3 sm:mb-4 text-xs sm:text-sm text-white/60 font-body">
+                <Calendar size={14} />
+                {formatPeriod(exp.period)}
+              </div>
+
+              <p className="font-body text-xs sm:text-sm text-white/70 line-clamp-2">
                 {exp.summary}
               </p>
 
-              <div className="space-y-2">
-                {exp.highlights.slice(0, 2).map((highlight, idx) => (
-                  <div key={idx} className="flex gap-2 text-sm">
-                    <span className="text-secondary font-bold">•</span>
-                    <span className="font-body text-gray-700">{highlight}</span>
+              {exp.highlights.length > 0 && (
+                <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-white/10">
+                  <div className="space-y-1">
+                    {exp.highlights.slice(0, 1).map((highlight, idx) => (
+                      <div key={idx} className="flex gap-2 text-xs sm:text-sm">
+                        <span className="text-secondary font-bold flex-shrink-0">•</span>
+                        <span className="font-body text-white/70 line-clamp-1">{highlight}</span>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-
-              {index < experiences.length - 1 && (
-                <div className="mt-6 border-t border-primary/10" />
+                </div>
               )}
             </button>
           ))}

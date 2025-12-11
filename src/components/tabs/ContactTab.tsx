@@ -87,166 +87,139 @@ export const ContactTab = ({ links }: ContactTabProps) => {
       id="panel-contact"
       role="tabpanel"
       aria-labelledby="tab-contact"
-      className="flex-1 px-8 py-12 bg-white"
+      className="w-full min-h-screen px-3 sm:px-6 lg:px-8 py-12 sm:py-16"
     >
-      <div className="max-w-3xl mx-auto">
-  <h2 className="font-heading text-3xl font-bold text-brand mb-8">Get In Touch</h2>
+      <div className="max-w-4xl mx-auto">
+        <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-accent via-secondary to-white bg-clip-text text-transparent mb-8 sm:mb-12">Get in Touch</h2>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-8">
-          <div>
-            <h3 className="font-heading text-xl font-semibold text-brand mb-4">
-              Send me a message
-            </h3>
-            <p className="font-body text-gray-600 mb-6">
-              Have a question or want to work together? Fill out the form and I'll get back to you as soon as possible.
-            </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-12">
+          {/* Contact Links */}
+          <div className="space-y-4 sm:space-y-6">
+            <a
+              href={`mailto:${links.email}`}
+              className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl p-4 sm:p-6 hover:bg-white/15 hover:border-accent/50 transition-all duration-300 flex items-center gap-4 group"
+            >
+              <div className="p-3 rounded-lg bg-accent/20 border border-accent/30 group-hover:scale-110 transition-transform duration-300">
+                <Mail className="text-accent" size={24} />
+              </div>
+              <div>
+                <h3 className="font-heading font-bold text-white mb-1 text-sm sm:text-base">Email</h3>
+                <p className="font-body text-xs sm:text-sm text-white/70 break-all">{links.email}</p>
+              </div>
+            </a>
 
-            <div className="space-y-4">
-              <a
-                href={links.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="
-                  flex items-center gap-3 text-gray-700 hover:text-primary
-                  transition-colors font-body
-                  focus:outline-none focus:ring-2 focus:ring-secondary rounded px-2 py-1
-                "
-              >
-                <Github size={20} />
-                <span>GitHub</span>
-              </a>
+            <a
+              href={links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl p-4 sm:p-6 hover:bg-white/15 hover:border-secondary/50 transition-all duration-300 flex items-center gap-4 group"
+            >
+              <div className="p-3 rounded-lg bg-secondary/20 border border-secondary/30 group-hover:scale-110 transition-transform duration-300">
+                <Github className="text-secondary" size={24} />
+              </div>
+              <div>
+                <h3 className="font-heading font-bold text-white mb-1 text-sm sm:text-base">GitHub</h3>
+                <p className="font-body text-xs sm:text-sm text-white/70 truncate">github.com/Randyh-25</p>
+              </div>
+            </a>
 
-              <a
-                href={links.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="
-                  flex items-center gap-3 text-gray-700 hover:text-primary
-                  transition-colors font-body
-                  focus:outline-none focus:ring-2 focus:ring-secondary rounded px-2 py-1
-                "
-              >
-                <Linkedin size={20} />
-                <span>LinkedIn</span>
-              </a>
-
-              <a
-                href={`mailto:${links.email}`}
-                className="
-                  flex items-center gap-3 text-gray-700 hover:text-primary
-                  transition-colors font-body
-                  focus:outline-none focus:ring-2 focus:ring-secondary rounded px-2 py-1
-                "
-              >
-                <Mail size={20} />
-                <span>{links.email}</span>
-              </a>
-            </div>
+            <a
+              href={links.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl p-4 sm:p-6 hover:bg-white/15 hover:border-accent/50 transition-all duration-300 flex items-center gap-4 group"
+            >
+              <div className="p-3 rounded-lg bg-accent/20 border border-accent/30 group-hover:scale-110 transition-transform duration-300">
+                <Linkedin className="text-accent" size={24} />
+              </div>
+              <div>
+                <h3 className="font-heading font-bold text-white mb-1 text-sm sm:text-base">LinkedIn</h3>
+                <p className="font-body text-xs sm:text-sm text-white/70 truncate">linkedin.com/in/randyhendriyawan</p>
+              </div>
+            </a>
           </div>
 
-          <div>
-            <form onSubmit={handleSubmit} className="space-y-4" aria-live="polite">
-              <div>
-                <label htmlFor="name" className="block font-body text-sm font-medium text-gray-700 mb-1">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className={`
-                    w-full px-4 py-2 rounded-lg border font-body
-                    focus:outline-none focus:ring-2 focus:ring-secondary
-                    ${errors.name ? 'border-red-500' : 'border-gray-300'}
-                  `}
-                  placeholder="Randy Hendriyawan"
-                  aria-invalid={!!errors.name}
-                  required
-                  autoComplete="name"
-                />
-                {errors.name && (
-                  <p className="text-red-500 text-sm font-body mt-1">{errors.name}</p>
-                )}
+          {/* Contact Form */}
+          <form onSubmit={handleSubmit} className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 sm:p-8 shadow-xl" aria-live="polite">
+            <div className="mb-4 sm:mb-6">
+              <label htmlFor="name" className="block font-heading font-semibold text-white mb-2 text-sm sm:text-base">Name</label>
+              <input
+                id="name"
+                type="text"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300 text-sm sm:text-base"
+                placeholder="Your name"
+                aria-invalid={!!errors.name}
+                autoComplete="name"
+              />
+              {errors.name && <p className="text-red-400 text-xs sm:text-sm mt-1">{errors.name}</p>}
+            </div>
+
+            <div className="mb-4 sm:mb-6">
+              <label htmlFor="email" className="block font-heading font-semibold text-white mb-2 text-sm sm:text-base">Email</label>
+              <input
+                id="email"
+                type="email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300 text-sm sm:text-base"
+                placeholder="your.email@example.com"
+                aria-invalid={!!errors.email}
+                autoComplete="email"
+              />
+              {errors.email && <p className="text-red-400 text-xs sm:text-sm mt-1">{errors.email}</p>}
+            </div>
+
+            <div className="mb-6 sm:mb-8">
+              <label htmlFor="message" className="block font-heading font-semibold text-white mb-2 text-sm sm:text-base">Message</label>
+              <textarea
+                id="message"
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                rows={4}
+                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300 resize-none text-sm sm:text-base"
+                placeholder="Your message..."
+                aria-invalid={!!errors.message}
+              />
+              {errors.message && <p className="text-red-400 text-xs sm:text-sm mt-1">{errors.message}</p>}
+            </div>
+
+            {status === 'success' && (
+              <div className="mb-4 p-3 bg-accent/20 border border-accent/30 rounded-lg text-accent text-xs sm:text-sm font-body">
+                ✓ Message sent successfully!
               </div>
-
-              <div>
-                <label htmlFor="email" className="block font-body text-sm font-medium text-gray-700 mb-1">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className={`
-                    w-full px-4 py-2 rounded-lg border font-body
-                    focus:outline-none focus:ring-2 focus:ring-secondary
-                    ${errors.email ? 'border-red-500' : 'border-gray-300'}
-                  `}
-                  placeholder="your.email@example.com"
-                  aria-invalid={!!errors.email}
-                  required
-                  autoComplete="email"
-                />
-                {errors.email && (
-                  <p className="text-red-500 text-sm font-body mt-1">{errors.email}</p>
-                )}
+            )}
+            {status === 'error' && (
+              <div className="mb-4 p-3 bg-red-500/20 border border-red-500/30 rounded-lg text-red-400 text-xs sm:text-sm font-body">
+                ✕ Failed to send message. Please try again.
               </div>
+            )}
 
-              <div>
-                <label htmlFor="message" className="block font-body text-sm font-medium text-gray-700 mb-1">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  rows={5}
-                  className={`
-                    w-full px-4 py-2 rounded-lg border font-body resize-none
-                    focus:outline-none focus:ring-2 focus:ring-secondary
-                    ${errors.message ? 'border-red-500' : 'border-gray-300'}
-                  `}
-                  placeholder="Your message..."
-                  aria-invalid={!!errors.message}
-                  required
-                  autoComplete="off"
-                />
-                {errors.message && (
-                  <p className="text-red-500 text-sm font-body mt-1">{errors.message}</p>
-                )}
-              </div>
+            <button
+              type="submit"
+              disabled={status === 'sending'}
+              className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 sm:py-4 bg-gradient-to-r from-accent to-secondary text-gray-900 font-body font-semibold rounded-xl hover:shadow-lg hover:shadow-accent/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 text-sm sm:text-base"
+            >
+              <Send size={18} />
+              {status === 'sending' ? 'Sending...' : 'Send Message'}
+            </button>
+          </form>
+        </div>
 
-              <button
-                type="submit"
-                disabled={status === 'sending'}
-                className={`
-                  w-full flex items-center justify-center gap-2 px-6 py-3
-                  rounded-lg font-body font-medium focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2
-                  ${status === 'sending' ? 'bg-primary/60 text-white cursor-not-allowed' : 'bg-primary text-white hover:bg-primary/90'}
-                `}
-              >
-                <Send size={18} />
-                {status === 'sending' ? 'Sending…' : 'Send Message'}
-              </button>
-
-              {status === 'success' && (
-                <div className="p-4 bg-accent/20 border border-accent rounded-lg">
-                  <p className="text-text-dark font-body text-sm">
-                    Thank you for your message! I'll get back to you soon.
-                  </p>
-                </div>
-              )}
-
-              {status === 'error' && (
-                <div className="p-4 bg-red-50 border border-red-300 rounded-lg">
-                  <p className="text-red-700 font-body text-sm">
-                    Sorry, failed to send your message. Please check your configuration or try again later.
-                  </p>
-                </div>
-              )}
-            </form>
+        {/* Social Links Section */}
+        <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 sm:p-8 text-center">
+          <h3 className="font-heading text-lg sm:text-xl font-bold text-white mb-4">Or connect with me on social media</h3>
+          <div className="flex justify-center gap-4 sm:gap-6">
+            <a href={links.github} target="_blank" rel="noopener noreferrer" className="p-3 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-white/20 hover:border-secondary/50 transition-all duration-300">
+              <Github size={24} />
+            </a>
+            <a href={links.linkedin} target="_blank" rel="noopener noreferrer" className="p-3 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-white/20 hover:border-accent/50 transition-all duration-300">
+              <Linkedin size={24} />
+            </a>
+            <a href={`mailto:${links.email}`} className="p-3 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-white/20 hover:border-accent/50 transition-all duration-300">
+              <Mail size={24} />
+            </a>
           </div>
         </div>
       </div>

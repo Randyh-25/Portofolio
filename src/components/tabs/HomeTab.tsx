@@ -16,84 +16,91 @@ export const HomeTab = ({ profile, onNavigateToProfile }: HomeTabProps) => {
       id="panel-home"
       role="tabpanel"
       aria-labelledby="tab-home"
-      className="flex-1 flex items-center justify-center px-8 py-12 bg-surface"
+      className="w-full min-h-screen flex items-center justify-center px-3 sm:px-6 lg:px-8 py-12 sm:py-20"
     >
-      <div className="max-w-4xl w-full flex flex-col lg:flex-row items-center gap-12">
-        <div className="flex-shrink-0">
-          <img
-            src={profile.avatar}
-            alt={profile.name}
-            className="w-48 h-48 rounded-full object-cover shadow-lg border-4 border-white ring-4 ring-primary/20 ring-offset-2 transition-transform duration-300 hover:scale-105 animate-float-slow"
-          />
-        </div>
+      <div className="max-w-5xl w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+          {/* Avatar Card with Glassmorphism */}
+          <div className="flex justify-center lg:justify-start">
+            <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-r from-accent via-secondary to-primary opacity-0 group-hover:opacity-100 rounded-2xl blur-xl transition-all duration-500"></div>
+              <img
+                src={profile.avatar}
+                alt={profile.name}
+                className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-2xl object-cover shadow-2xl border border-white/20 backdrop-blur-xl transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+          </div>
 
-        <div className="flex-1 text-center lg:text-left">
-          <h1 className="font-heading text-4xl lg:text-5xl font-bold text-brand mb-2">
-            {profile.name}
-          </h1>
-          <h2 className="font-heading text-2xl lg:text-3xl text-primary mb-4">
-            {profile.role}
-          </h2>
-          <p className="font-body text-lg text-gray-700 mb-8 max-w-xl">
-            <span className="bg-accent/30 px-2 py-1 rounded">
-              {profile.tagline}
-            </span>
-          </p>
+          {/* Content Card with Glassmorphism */}
+          <div className="space-y-6 sm:space-y-8">
+            <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 sm:p-8 shadow-xl hover:bg-white/15 transition-all duration-300">
+              <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-accent via-secondary to-white bg-clip-text text-transparent mb-3 sm:mb-4">
+                {profile.name}
+              </h1>
+              <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl text-accent font-semibold mb-4 sm:mb-6">
+                {profile.role}
+              </h2>
+              <p className="font-body text-sm sm:text-base lg:text-lg text-white/80 leading-relaxed">
+                {profile.tagline}
+              </p>
+            </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <button
-              onClick={async () => {
-                // Prefer a real file in /public/cv.pdf if present; otherwise fall back to a tiny built-in PDF
-                try {
-                  const res = await fetch('/cv.pdf', { method: 'HEAD' });
-                  if (res.ok) {
-                    const a = document.createElement('a');
-                    a.href = '/cv.pdf';
-                    a.download = 'Randy-Hendriyawan-CV.pdf';
-                    document.body.appendChild(a);
-                    a.click();
-                    a.remove();
-                    return;
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <button
+                onClick={async () => {
+                  try {
+                    const res = await fetch('/cv.pdf', { method: 'HEAD' });
+                    if (res.ok) {
+                      const a = document.createElement('a');
+                      a.href = '/cv.pdf';
+                      a.download = 'Randy-Hendriyawan-CV.pdf';
+                      document.body.appendChild(a);
+                      a.click();
+                      a.remove();
+                      return;
+                    }
+                  } catch (_) {
+                    // ignore and use fallback
                   }
-                } catch (_) {
-                  // ignore and use fallback
-                }
 
-                // Fallback: a minimal valid PDF ("Hello, World!") embedded as base64
-                const base64Pdf =
-                  'JVBERi0xLjQKJcTl8uXrp/Og0MTGCjEgMCBvYmoKPDwvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFI+PgplbmRvYmoKMiAwIG9iago8PC9UeXBlIC9QYWdlcyAvQ291bnQgMSAvS2lkcyBbMyAwIFJdPj4KZW5kb2JqCjMgMCBvYmoKPDwvVHlwZSAvUGFnZSAvUGFyZW50IDIgMCBSIC9NZWRpYUJveCBbMCAwIDYxMiA3OTJdIC9Db250ZW50cyA0IDAgUiAvUmVzb3VyY2VzIDw8L0ZvbnQgPDwvRjEgNSAwIFI+Pj4+PgplbmRvYmoKNCAwIG9iago8PC9MZW5ndGggNDY+PgpzdHJlYW0KQlQKL0YxIDI0IFRmIDcyIDcyMCBUZCAoSGVsbG8sIFdvcmxkISkgVGoKRVQKZW5kc3RyZWFtCmVuZG9iago1IDAgb2JqCjw8L1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAvSGVsdmV0aWNhPj4KZW5kb2JqCnhyZWYKMCA2CjAwMDAwMDAwMDAgNjU1MzUgZg0KMDAwMDAwMDAxMCAwMDAwMCBuDQowMDAwMDAwMDYxIDAwMDAwIG4NCjAwMDAwMDAxMjEgMDAwMDAgbg0KMDAwMDAwMDIzMSAwMDAwMCBuDQowMDAwMDAwMzEzIDAwMDAwIG4NCnRyYWlsZXIKPDwvU2l6ZSA2IC9Sb290IDEgMCBSPj4Kc3RhcnR4cmVmCjQyNQolJUVPRgo=';
-                const a = document.createElement('a');
-                a.href = `data:application/pdf;base64,${base64Pdf}`;
-                a.download = 'Randy-Hendriyawan-CV.pdf';
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-              }}
-              className="
-                inline-flex items-center gap-2 px-6 py-3
-                bg-primary text-white font-body font-medium rounded-lg
-                hover:bg-primary/90 transition-all duration-200
-                focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2
-                shadow-md hover:shadow-lg
-              "
-              aria-label="Download CV as PDF"
-            >
-              <Download size={20} />
-              Download CV
-            </button>
+                  const base64Pdf =
+                    'JVBERi0xLjQKJcTl8uXrp/Og0MTGCjEgMCBvYmoKPDwvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFI+PgplbmRvYmoKMiAwIG9iago8PC9UeXBlIC9QYWdlcyAvQ291bnQgMSAvS2lkcyBbMyAwIFJdPj4KZW5kb2JqCjMgMCBvYmoKPDwvVHlwZSAvUGFnZSAvUGFyZW50IDIgMCBSIC9NZWRpYUJveCBbMCAwIDYxMiA3OTJdIC9Db250ZW50cyA0IDAgUiAvUmVzb3VyY2VzIDw8L0ZvbnQgPDwvRjEgNSAwIFI+Pj4+PgplbmRvYmoKNCAwIG9iago8PC9MZW5ndGggNDY+PgpzdHJlYW0KQlQKL0YxIDI0IFRmIDcyIDcyMCBUZCAoSGVsbG8sIFdvcmxkISkgVGoKRVQKZW5kc3RyZWFtCmVuZG9iago1IDAgb2JqCjw8L1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAvSGVsdmV0aWNhPj4KZW5kb2JqCnhyZWYKMCA2CjAwMDAwMDAwMDAgNjU1MzUgZg0KMDAwMDAwMDAxMCAwMDAwMCBuDQowMDAwMDAwMDYxIDAwMDAwIG4NCjAwMDAwMDAxMjEgMDAwMDAgbg0KMDAwMDAwMDIzMSAwMDAwMCBuDQowMDAwMDAwMzEzIDAwMDAwIG4NCnRyYWlsZXIKPDwvU2l6ZSA2IC9Sb290IDEgMCBSPj4Kc3RhcnR4cmVmCjQyNQolJUVPRgo=';
+                  const a = document.createElement('a');
+                  a.href = `data:application/pdf;base64,${base64Pdf}`;
+                  a.download = 'Randy-Hendriyawan-CV.pdf';
+                  document.body.appendChild(a);
+                  a.click();
+                  a.remove();
+                }}
+                className="
+                  inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4
+                  bg-gradient-to-r from-accent to-secondary text-gray-900 font-body font-semibold rounded-xl
+                  hover:shadow-lg hover:shadow-accent/50 transition-all duration-300
+                  focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-gray-900
+                  text-sm sm:text-base
+                "
+                aria-label="Download CV as PDF"
+              >
+                <Download size={20} />
+                Download CV
+              </button>
 
-            <button
-              onClick={onNavigateToProfile}
-              className="
-                inline-flex items-center gap-2 px-6 py-3
-                bg-white text-primary font-body font-medium rounded-lg border-2 border-primary
-                hover:bg-primary/5 transition-all duration-200
-                focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2
-              "
-            >
-              View Profile
-              <ArrowRight size={20} />
-            </button>
+              <button
+                onClick={onNavigateToProfile}
+                className="
+                  inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4
+                  bg-white/10 border border-white/30 text-white font-body font-semibold rounded-xl
+                  hover:bg-white/20 hover:border-white/50 transition-all duration-300
+                  focus:outline-none focus:ring-2 focus:ring-accent
+                  text-sm sm:text-base
+                "
+              >
+                View Profile
+                <ArrowRight size={20} />
+              </button>
+            </div>
           </div>
         </div>
       </div>
