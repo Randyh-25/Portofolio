@@ -49,27 +49,10 @@ export const HomeTab = ({ profile, onNavigateToProfile }: HomeTabProps) => {
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <button
-                onClick={async () => {
-                  try {
-                    const res = await fetch('/cv.pdf', { method: 'HEAD' });
-                    if (res.ok) {
-                      const a = document.createElement('a');
-                      a.href = '/cv.pdf';
-                      a.download = 'Randy-Hendriyawan-CV.pdf';
-                      document.body.appendChild(a);
-                      a.click();
-                      a.remove();
-                      return;
-                    }
-                  } catch (_) {
-                    // ignore and use fallback
-                  }
-
-                  const base64Pdf =
-                    'JVBERi0xLjQKJcTl8uXrp/Og0MTGCjEgMCBvYmoKPDwvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFI+PgplbmRvYmoKMiAwIG9iago8PC9UeXBlIC9QYWdlcyAvQ291bnQgMSAvS2lkcyBbMyAwIFJdPj4KZW5kb2JqCjMgMCBvYmoKPDwvVHlwZSAvUGFnZSAvUGFyZW50IDIgMCBSIC9NZWRpYUJveCBbMCAwIDYxMiA3OTJdIC9Db250ZW50cyA0IDAgUiAvUmVzb3VyY2VzIDw8L0ZvbnQgPDwvRjEgNSAwIFI+Pj4+PgplbmRvYmoKNCAwIG9iago8PC9MZW5ndGggNDY+PgpzdHJlYW0KQlQKL0YxIDI0IFRmIDcyIDcyMCBUZCAoSGVsbG8sIFdvcmxkISkgVGoKRVQKZW5kc3RyZWFtCmVuZG9iago1IDAgb2JqCjw8L1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAvSGVsdmV0aWNhPj4KZW5kb2JqCnhyZWYKMCA2CjAwMDAwMDAwMDAgNjU1MzUgZg0KMDAwMDAwMDAxMCAwMDAwMCBuDQowMDAwMDAwMDYxIDAwMDAwIG4NCjAwMDAwMDAxMjEgMDAwMDAgbg0KMDAwMDAwMDIzMSAwMDAwMCBuDQowMDAwMDAwMzEzIDAwMDAwIG4NCnRyYWlsZXIKPDwvU2l6ZSA2IC9Sb290IDEgMCBSPj4Kc3RhcnR4cmVmCjQyNQolJUVPRgo=';
+                onClick={() => {
                   const a = document.createElement('a');
-                  a.href = `data:application/pdf;base64,${base64Pdf}`;
-                  a.download = 'Randy-Hendriyawan-CV.pdf';
+                  a.href = '/CV_RandyHendriyawan.pdf';
+                  a.download = 'CV_RandyHendriyawan.pdf';
                   document.body.appendChild(a);
                   a.click();
                   a.remove();
