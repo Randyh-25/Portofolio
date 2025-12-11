@@ -24,8 +24,8 @@ function App() {
 
       <TopBar />
 
-      <main className="flex-1 pb-32">
-        <div key={activeTab} className="w-full">
+      <main className="flex-1 pb-24 sm:pb-28 md:pb-32 px-3 sm:px-4 md:px-6">
+        <div key={activeTab} className="w-full max-w-7xl mx-auto">
           {activeTab === 'home' && (
             <HomeTab
               profile={{
