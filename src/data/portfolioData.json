@@ -137,7 +137,7 @@
   "slug": "skined-ai-skin-detection",
   "title": "Project SkinEd: AI Skin Type Detection",
   "summary": "AI-powered facial skin classification system using ResNet50 and web-based interface.",
-  "status": "Completed",
+  "status": "Done",
   "period": {
     "start": "2024-09",
     "end": "2025-01"
@@ -174,7 +174,7 @@
 
     {
       "slug": "sumateran-roar",
-      "title": "Project Sumateran Roar",
+      "title": "Sumateran Roar",
       "summary": "Dead by Daylight-inspired multiplayer horror game set in Sumatra.",
       "status": "Done",
       "period": {
