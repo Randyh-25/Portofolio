@@ -163,7 +163,7 @@
     }
   ],
   "demoUrl": null,
-  "repoUrl": "https://github.com/Randyh-25/SkinEd",
+  "repoUrl": "https://colab.research.google.com/drive/1c-mAjwzPkk5IyxqsCgKg96ahzvX-JX3z?usp=sharing",
   "outcomes": [
     "Successfully implemented ResNet50 fine-tuned for 3-class skin type recognition (normal, dry, oily)",
     "Achieved high evaluation performance with ROC-AUC > 0.90 for all classes",
