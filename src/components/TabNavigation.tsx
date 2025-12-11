@@ -12,7 +12,7 @@ const tabs = [
   { key: 'experience' as TabKey, label: 'Experience', icon: Briefcase },
   { key: 'projects' as TabKey, label: 'Projects', icon: FolderOpen },
   { key: 'contact' as TabKey, label: 'Contact', icon: Mail },
-  { key: 'testimoni' as TabKey, label: 'Testimoni', icon: MessageCircle },
+  { key: 'testimoni' as TabKey, label: 'Testimonials', icon: MessageCircle },
 ];
 
 export const TabNavigation = ({ activeTab, onTabChange }: TabNavigationProps) => {

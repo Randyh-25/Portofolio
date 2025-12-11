@@ -28,13 +28,13 @@ export const TestimoniForm = () => {
     try {
       // Validasi
       if (!formData.nama.trim()) {
-        throw new Error('Nama harus diisi');
+        throw new Error('Name is required');
       }
       if (!formData.komentar.trim()) {
-        throw new Error('Komentar harus diisi');
+        throw new Error('Testimonial is required');
       }
       if (formData.komentar.length < 10) {
-        throw new Error('Komentar minimal 10 karakter');
+        throw new Error('Testimonial must be at least 10 characters');
       }
 
       const testimoniRef = collection(db, 'testimoni');
@@ -53,13 +53,13 @@ export const TestimoniForm = () => {
       
       await addDoc(testimoniRef, dataToSubmit);
 
-      setMessage({ type: 'success', text: '✅ Testimoni berhasil dikirim! Terima kasih!' });
+      setMessage({ type: 'success', text: '✅ Testimonial sent successfully! Thank you!' });
       setFormData({ nama: '', email: '', perusahaan: '', rating: 5, komentar: '' });
       
       // Hilangkan pesan setelah 5 detik
       setTimeout(() => setMessage(null), 5000);
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Gagal mengirim testimoni';
+      const errorMessage = error instanceof Error ? error.message : 'Failed to send testimonial';
       console.error('Error submitting testimoni:', error);
       setMessage({ type: 'error', text: `❌ ${errorMessage}` });
     } finally {
@@ -69,19 +69,19 @@ export const TestimoniForm = () => {
 
   return (
     <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl">
-      <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-white mb-6">Bagikan Testimoni Anda</h3>
+      <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-white mb-6">Share Your Testimonial</h3>
 
       <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
         {/* Nama */}
         <div>
           <label htmlFor="nama" className="block text-xs sm:text-sm font-body text-white/80 mb-2">
-            Nama <span className="text-red-400">*</span>
+            Name <span className="text-red-400">*</span>
           </label>
           <input
             id="nama"
             type="text"
             name="nama"
-            placeholder="Nama Anda"
+            placeholder="Your Name"
             value={formData.nama}
             onChange={handleChange}
             disabled={loading}
@@ -92,7 +92,7 @@ export const TestimoniForm = () => {
         {/* Email */}
         <div>
           <label htmlFor="email" className="block text-xs sm:text-sm font-body text-white/80 mb-2">
-            Email <span className="text-white/50">(Opsional)</span>
+            Email <span className="text-white/50">(Optional)</span>
           </label>
           <input
             id="email"
@@ -109,13 +109,13 @@ export const TestimoniForm = () => {
         {/* Perusahaan */}
         <div>
           <label htmlFor="perusahaan" className="block text-xs sm:text-sm font-body text-white/80 mb-2">
-            Perusahaan <span className="text-white/50">(Opsional)</span>
+            Company <span className="text-white/50">(Optional)</span>
           </label>
           <input
             id="perusahaan"
             type="text"
             name="perusahaan"
-            placeholder="Nama Perusahaan"
+            placeholder="Company Name"
             value={formData.perusahaan}
             onChange={handleChange}
             disabled={loading}
@@ -163,8 +163,8 @@ export const TestimoniForm = () => {
           </div>
           <p className="text-[10px] sm:text-xs text-white/50">
             {hoveredRating 
-              ? `Klik untuk memberikan ${hoveredRating} bintang`
-              : `Anda memberikan ${formData.rating} bintang`
+              ? `Click to give ${hoveredRating} stars`
+              : `You rated ${formData.rating} stars`
             }
           </p>
         </div>
@@ -172,12 +172,12 @@ export const TestimoniForm = () => {
         {/* Komentar */}
         <div>
           <label htmlFor="komentar" className="block text-xs sm:text-sm font-body text-white/80 mb-2">
-            Testimoni <span className="text-red-400">*</span>
+            Testimonial <span className="text-red-400">*</span>
           </label>
           <textarea
             id="komentar"
             name="komentar"
-            placeholder="Bagikan pengalaman Anda bekerja dengan saya..."
+            placeholder="Share your experience working with me..."
             value={formData.komentar}
             onChange={handleChange}
             disabled={loading}
@@ -185,7 +185,7 @@ export const TestimoniForm = () => {
             className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300 resize-none text-xs sm:text-sm disabled:opacity-50"
           />
           <p className="text-[10px] sm:text-xs text-white/50 mt-1">
-            Minimal 10 karakter
+            Minimum 10 characters
           </p>
         </div>
 
@@ -209,7 +209,7 @@ export const TestimoniForm = () => {
           className="w-full px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-accent to-secondary text-gray-900 font-body font-semibold rounded-lg sm:rounded-xl hover:shadow-lg hover:shadow-accent/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 text-xs sm:text-sm"
         >
           <Send size={16} className="sm:w-5 sm:h-5" />
-          {loading ? 'Mengirim...' : 'Kirim Testimoni'}
+          {loading ? 'Sending...' : 'Send Testimonial'}
         </button>
       </form>
     </div>

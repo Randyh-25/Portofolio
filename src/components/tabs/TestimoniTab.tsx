@@ -80,18 +80,18 @@ export const TestimoniTab = () => {
         {/* Header */}
         <div className="mb-8 sm:mb-12">
           <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-accent via-secondary to-white bg-clip-text text-transparent mb-4 sm:mb-6">
-            Testimoni Klien
+            Client Testimonials
           </h2>
           
           {/* Stats */}
           {testimoni.length > 0 && (
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 mb-8">
               <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-lg sm:rounded-xl p-3 sm:p-4">
-                <p className="text-xs sm:text-sm text-white/70">Total Testimoni</p>
+                <p className="text-xs sm:text-sm text-white/70">Total Testimonials</p>
                 <p className="font-heading font-bold text-lg sm:text-2xl text-accent">{testimoni.length}</p>
               </div>
               <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-lg sm:rounded-xl p-3 sm:p-4">
-                <p className="text-xs sm:text-sm text-white/70">Rating Rata-rata</p>
+                <p className="text-xs sm:text-sm text-white/70">Average Rating</p>
                 <div className="flex items-center gap-2">
                   <Star size={16} className="fill-secondary text-secondary" />
                   <p className="font-heading font-bold text-lg sm:text-2xl text-secondary">{averageRating}</p>
@@ -111,7 +111,7 @@ export const TestimoniTab = () => {
                     : 'bg-white/10 border border-white/20 text-white hover:bg-white/15'
                 }`}
               >
-                Semua
+                All
               </button>
               {[5, 4, 3, 2, 1].map(rating => (
                 <button
@@ -190,11 +190,11 @@ export const TestimoniTab = () => {
 
                     {/* Date */}
                     <p className="text-[10px] sm:text-xs text-white/50 font-body">
-                      {item.createdAt?.toDate?.()?.toLocaleDateString?.('id-ID', {
+                      {item.createdAt?.toDate?.()?.toLocaleDateString?.('en-US', {
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric',
-                      }) || 'Tanggal tidak tersedia'}
+                      }) || 'Date not available'}
                     </p>
                   </div>
                 ))}
@@ -204,8 +204,8 @@ export const TestimoniTab = () => {
                 <AlertCircle size={32} className="mx-auto text-white/40 mb-3" />
                 <p className="text-white/60 text-sm font-body">
                   {filter 
-                    ? `Tidak ada testimoni dengan rating ${filter} bintang`
-                    : 'Belum ada testimoni yang ditampilkan'}
+                    ? `No testimonials with ${filter} stars rating`
+                    : 'No testimonials to display yet'}
                 </p>
               </div>
             )}
