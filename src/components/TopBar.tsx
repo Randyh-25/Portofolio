@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Wifi, Battery, Volume2 } from 'lucide-react';
 
 export const TopBar = () => {
   const [time, setTime] = useState<string>(() => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));

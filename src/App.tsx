@@ -6,6 +6,7 @@ import { ProfileTab } from './components/tabs/ProfileTab';
 import { ExperienceTab } from './components/tabs/ExperienceTab';
 import { ProjectsTab } from './components/tabs/ProjectsTab2';
 import { ContactTab } from './components/tabs/ContactTab';
+import { TestimoniTab } from './components/tabs/TestimoniTab';
 import portfolioData from './data/portfolioData.json';
 import { TopBar } from './components/TopBar';
 
@@ -61,6 +62,10 @@ function App() {
 
           {activeTab === 'contact' && (
             <ContactTab links={portfolioData.profile.links} />
+          )}
+
+          {activeTab === 'testimoni' && (
+            <TestimoniTab />
           )}
         </div>
       </main>

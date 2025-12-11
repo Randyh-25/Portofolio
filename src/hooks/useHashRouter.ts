@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 
-export type TabKey = 'home' | 'profile' | 'experience' | 'projects' | 'contact';
+export type TabKey = 'home' | 'profile' | 'experience' | 'projects' | 'contact' | 'testimoni';
 
 export const useHashRouter = () => {
   const getTabFromHash = (): TabKey => {
     const hash = window.location.hash.slice(1);
-    const validTabs: TabKey[] = ['home', 'profile', 'experience', 'projects', 'contact'];
+    const validTabs: TabKey[] = ['home', 'profile', 'experience', 'projects', 'contact', 'testimoni'];
     return validTabs.includes(hash as TabKey) ? (hash as TabKey) : 'home';
   };
 

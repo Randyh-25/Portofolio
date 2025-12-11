@@ -1,4 +1,4 @@
-import { Home, User, Briefcase, FolderOpen, Mail } from 'lucide-react';
+import { Home, User, Briefcase, FolderOpen, Mail, MessageCircle } from 'lucide-react';
 import { TabKey } from '../hooks/useHashRouter';
 
 interface TabNavigationProps {
@@ -12,6 +12,7 @@ const tabs = [
   { key: 'experience' as TabKey, label: 'Experience', icon: Briefcase },
   { key: 'projects' as TabKey, label: 'Projects', icon: FolderOpen },
   { key: 'contact' as TabKey, label: 'Contact', icon: Mail },
+  { key: 'testimoni' as TabKey, label: 'Testimoni', icon: MessageCircle },
 ];
 
 export const TabNavigation = ({ activeTab, onTabChange }: TabNavigationProps) => {
