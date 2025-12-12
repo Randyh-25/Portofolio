@@ -13,6 +13,7 @@ export const TestimoniForm = () => {
     hideName: false,
     collaborationType: 'client' as 'client' | 'team',
     projectSlug: '',
+    projectCustomName: '',
   });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
@@ -39,6 +40,7 @@ export const TestimoniForm = () => {
       collaborationType: value,
       perusahaan: value === 'team' ? '' : prev.perusahaan,
       projectSlug: value === 'client' ? '' : prev.projectSlug,
+      projectCustomName: value === 'client' ? '' : prev.projectCustomName,
     }));
   };
 
@@ -61,6 +63,9 @@ export const TestimoniForm = () => {
       if (formData.collaborationType === 'team' && !formData.projectSlug) {
         throw new Error('Please select the project we worked on / Pilih project yang kita kerjakan');
       }
+      if (formData.collaborationType === 'team' && formData.projectSlug === 'other' && !formData.projectCustomName.trim()) {
+        throw new Error('Please enter the project name / Masukkan nama project');
+      }
 
       const selectedProject = projectOptions.find(project => project.slug === formData.projectSlug);
 
@@ -71,7 +76,11 @@ export const TestimoniForm = () => {
         perusahaan: formData.collaborationType === 'client' ? formData.perusahaan.trim() : '',
         collaborationType: formData.collaborationType,
         projectSlug: formData.collaborationType === 'team' ? formData.projectSlug : '',
-        projectName: formData.collaborationType === 'team' ? (selectedProject?.title || '') : '',
+        projectName: formData.collaborationType === 'team'
+          ? (formData.projectSlug === 'other'
+            ? formData.projectCustomName.trim()
+            : (selectedProject?.title || ''))
+          : '',
         rating: parseInt(formData.rating.toString()),
         komentar: formData.komentar.trim(),
         hideName: formData.hideName,
@@ -92,6 +101,7 @@ export const TestimoniForm = () => {
         hideName: false,
         collaborationType: 'client',
         projectSlug: '',
+        projectCustomName: '',
       });
       
       // Hilangkan pesan setelah 5 detik
@@ -173,6 +183,7 @@ export const TestimoniForm = () => {
                 disabled={loading}
                 className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300 text-xs sm:text-sm disabled:opacity-50"
               >
+                <option value="other" className="bg-gray-900">Other / Lainnya</option>
                 <option value="" className="bg-gray-900">Select a project / Pilih project</option>
                 {projectOptions.map(project => (
                   <option key={project.slug} value={project.slug} className="bg-gray-900">
@@ -180,6 +191,23 @@ export const TestimoniForm = () => {
                   </option>
                 ))}
               </select>
+              {formData.projectSlug === 'other' && (
+                <div className="mt-3">
+                  <label htmlFor="projectCustomName" className="block text-xs sm:text-sm font-body text-white/80 mb-2">
+                    Project name (manual) / Nama project (manual) <span className="text-red-400">*</span>
+                  </label>
+                  <input
+                    id="projectCustomName"
+                    type="text"
+                    name="projectCustomName"
+                    placeholder="Type the project name / Ketik nama project"
+                    value={formData.projectCustomName}
+                    onChange={handleChange}
+                    disabled={loading}
+                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300 text-xs sm:text-sm disabled:opacity-50"
+                  />
+                </div>
+              )}
             </>
           ) : (
             <>
