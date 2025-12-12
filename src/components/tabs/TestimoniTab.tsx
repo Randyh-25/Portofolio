@@ -9,6 +9,9 @@ interface Testimoni {
   nama: string;
   email?: string;
   perusahaan?: string;
+  collaborationType?: 'client' | 'team';
+  projectSlug?: string;
+  projectName?: string;
   rating: number;
   komentar: string;
   createdAt: any;
@@ -107,7 +110,7 @@ export const TestimoniTab = () => {
         {/* Header */}
         <div className="mb-8 sm:mb-12">
           <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-accent via-secondary to-white bg-clip-text text-transparent mb-4 sm:mb-6">
-            Client Testimonials
+            Testimonials
           </h2>
           
           {/* Stats */}
@@ -187,11 +190,21 @@ export const TestimoniTab = () => {
                         <h3 className="font-heading font-bold text-sm sm:text-base text-white">
                           {item.hideName ? censorName(item.nama) : item.nama}
                         </h3>
-                        {item.perusahaan && (
-                          <p className="text-xs sm:text-sm text-secondary font-body">
-                            {item.perusahaan}
-                          </p>
-                        )}
+                        <div className="flex flex-wrap items-center gap-2 mt-1">
+                          <span className="px-2 py-1 rounded-full text-[10px] sm:text-xs font-semibold bg-white/15 text-white border border-white/20">
+                            {item.collaborationType === 'team' ? 'Team / Tim' : 'Client / Klien'}
+                          </span>
+                          {item.collaborationType === 'team' && (item.projectName || item.projectSlug) && (
+                            <span className="text-[10px] sm:text-xs text-secondary font-body">
+                              Project / Proyek: {item.projectName || item.projectSlug}
+                            </span>
+                          )}
+                          {item.collaborationType !== 'team' && item.perusahaan && (
+                            <span className="text-[10px] sm:text-xs text-secondary font-body">
+                              {item.perusahaan}
+                            </span>
+                          )}
+                        </div>
                         {item.email && (
                           <p className="text-[10px] sm:text-xs text-white/50 font-body truncate">
                             {censorEmail(item.email)}
