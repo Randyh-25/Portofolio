@@ -4,7 +4,7 @@ import { db } from '../../lib/firebase';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { TestimoniForm } from '../TestimoniForm';
 
-interface Testimoni {
+interface Review {
   id: string;
   nama: string;
   email?: string;
@@ -20,7 +20,7 @@ interface Testimoni {
 }
 
 export const TestimoniTab = () => {
-  const [testimoni, setTestimoni] = useState<Testimoni[]>([]);
+  const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<number | null>(null);
 
@@ -52,10 +52,10 @@ export const TestimoniTab = () => {
 
   useEffect(() => {
     // Simplified query - fetch all first, then filter in code
-    const testimoniRef = collection(db, 'testimoni');
+    const reviewRef = collection(db, 'reviews');
 
     const unsubscribe = onSnapshot(
-      testimoniRef,
+      reviewRef,
       snapshot => {
         console.log('Total documents:', snapshot.docs.length);
         
@@ -66,11 +66,11 @@ export const TestimoniTab = () => {
             id: doc.id,
             ...data,
           };
-        }) as Testimoni[];
+        }) as Review[];
 
         // Filter approved in code
         const approvedData = allData.filter(item => item.status === 'approved');
-        console.log('Approved testimoni:', approvedData.length);
+        console.log('Approved reviews:', approvedData.length);
         
         // Sort by createdAt descending
         approvedData.sort((a, b) => {
@@ -79,11 +79,11 @@ export const TestimoniTab = () => {
           return dateB - dateA;
         });
         
-        setTestimoni(approvedData);
+        setReviews(approvedData);
         setLoading(false);
       },
       error => {
-        console.error('Error fetching testimoni:', error);
+        console.error('Error fetching reviews:', error);
         setLoading(false);
       }
     );
@@ -91,34 +91,34 @@ export const TestimoniTab = () => {
     return () => unsubscribe();
   }, []);
 
-  const filteredTestimoni = filter 
-    ? testimoni.filter(t => t.rating === filter)
-    : testimoni;
+  const filteredReviews = filter 
+    ? reviews.filter(t => t.rating === filter)
+    : reviews;
 
-  const averageRating = testimoni.length > 0
-    ? (testimoni.reduce((sum, t) => sum + t.rating, 0) / testimoni.length).toFixed(1)
+  const averageRating = reviews.length > 0
+    ? (reviews.reduce((sum, t) => sum + t.rating, 0) / reviews.length).toFixed(1)
     : 0;
 
   return (
     <div
-      id="panel-testimoni"
+      id="panel-review"
       role="tabpanel"
-      aria-labelledby="tab-testimoni"
+      aria-labelledby="tab-review"
       className="w-full min-h-screen px-4 sm:px-6 md:px-8 lg:px-12 py-8 sm:py-12 md:py-16"
     >
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-8 sm:mb-12">
           <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-accent via-secondary to-white bg-clip-text text-transparent mb-4 sm:mb-6">
-            Testimonials
+            Reviews
           </h2>
           
           {/* Stats */}
-          {testimoni.length > 0 && (
+          {reviews.length > 0 && (
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 mb-8">
               <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-lg sm:rounded-xl p-3 sm:p-4">
-                <p className="text-xs sm:text-sm text-white/70">Total Testimonials</p>
-                <p className="font-heading font-bold text-lg sm:text-2xl text-accent">{testimoni.length}</p>
+                <p className="text-xs sm:text-sm text-white/70">Total Reviews</p>
+                <p className="font-heading font-bold text-lg sm:text-2xl text-accent">{reviews.length}</p>
               </div>
               <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-lg sm:rounded-xl p-3 sm:p-4">
                 <p className="text-xs sm:text-sm text-white/70">Average Rating</p>
@@ -131,7 +131,7 @@ export const TestimoniTab = () => {
           )}
 
           {/* Filter */}
-          {testimoni.length > 0 && (
+          {reviews.length > 0 && (
             <div className="flex gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar pb-2">
               <button
                 onClick={() => setFilter(null)}
@@ -161,25 +161,25 @@ export const TestimoniTab = () => {
           )}
         </div>
 
-        {/* Form & Testimoni Grid */}
+        {/* Form & Review Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
           {/* Form */}
           <div className="lg:col-span-1">
             <TestimoniForm />
           </div>
 
-          {/* Testimoni List */}
+          {/* Review List */}
           <div className="lg:col-span-2">
             {loading ? (
               <div className="text-center py-12">
                 <div className="inline-block animate-spin">
                   <div className="border-4 border-white/20 border-t-accent rounded-full w-8 h-8"></div>
                 </div>
-                <p className="mt-4 text-white/60 text-sm">Loading testimoni...</p>
+                <p className="mt-4 text-white/60 text-sm">Loading reviews...</p>
               </div>
-            ) : filteredTestimoni.length > 0 ? (
+            ) : filteredReviews.length > 0 ? (
               <div className="space-y-4 sm:space-y-5">
-                {filteredTestimoni.map(item => (
+                {filteredReviews.map(item => (
                   <div
                     key={item.id}
                     className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 hover:bg-white/15 transition-all duration-300"
@@ -249,8 +249,8 @@ export const TestimoniTab = () => {
                 <AlertCircle size={32} className="mx-auto text-white/40 mb-3" />
                 <p className="text-white/60 text-sm font-body">
                   {filter 
-                    ? `No testimonials with ${filter} stars rating`
-                    : 'No testimonials to display yet'}
+                    ? `No reviews with ${filter} stars rating`
+                    : 'No reviews to display yet'}
                 </p>
               </div>
             )}

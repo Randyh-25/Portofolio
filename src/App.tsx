@@ -64,7 +64,7 @@ function App() {
             <ContactTab links={portfolioData.profile.links} />
           )}
 
-          {activeTab === 'testimoni' && (
+          {activeTab === 'review' && (
             <TestimoniTab />
           )}
         </div>

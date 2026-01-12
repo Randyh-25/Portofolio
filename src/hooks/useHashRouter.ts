@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
-export type TabKey = 'home' | 'profile' | 'experience' | 'projects' | 'contact' | 'testimoni';
+export type TabKey = 'home' | 'profile' | 'experience' | 'projects' | 'contact' | 'review';
 
-const validTabs: TabKey[] = ['home', 'profile', 'experience', 'projects', 'contact', 'testimoni'];
+const validTabs: TabKey[] = ['home', 'profile', 'experience', 'projects', 'contact', 'review'];
 
 const getTabFromPath = (): TabKey => {
   const path = window.location.pathname;

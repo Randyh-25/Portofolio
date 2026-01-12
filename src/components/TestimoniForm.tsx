@@ -55,10 +55,10 @@ export const TestimoniForm = () => {
         throw new Error('Name is required / Nama wajib diisi');
       }
       if (!formData.komentar.trim()) {
-        throw new Error('Testimonial is required / Testimoni wajib diisi');
+        throw new Error('Review is required / Review wajib diisi');
       }
       if (formData.komentar.length < 10) {
-        throw new Error('Testimonial must be at least 10 characters / Minimal 10 karakter');
+        throw new Error('Review must be at least 10 characters / Minimal 10 karakter');
       }
       if (formData.collaborationType === 'team' && !formData.projectSlug) {
         throw new Error('Please select the project we worked on / Pilih project yang kita kerjakan');
@@ -69,7 +69,7 @@ export const TestimoniForm = () => {
 
       const selectedProject = projectOptions.find(project => project.slug === formData.projectSlug);
 
-      const testimoniRef = collection(db, 'testimoni');
+      const reviewRef = collection(db, 'reviews');
       
       const dataToSubmit = {
         nama: formData.nama.trim(),
@@ -88,11 +88,11 @@ export const TestimoniForm = () => {
         status: 'pending',
       };
 
-      console.log('Submitting testimoni:', dataToSubmit);
+      console.log('Submitting review:', dataToSubmit);
       
-      await addDoc(testimoniRef, dataToSubmit);
+      await addDoc(reviewRef, dataToSubmit);
 
-      setMessage({ type: 'success', text: '✅ Testimonial sent successfully! Thank you! / Testimoni terkirim! Terima kasih!' });
+      setMessage({ type: 'success', text: '✅ Review sent successfully! Thank you! / Review terkirim! Terima kasih!' });
       setFormData({
         nama: '',
         perusahaan: '',
@@ -107,8 +107,8 @@ export const TestimoniForm = () => {
       // Hilangkan pesan setelah 5 detik
       setTimeout(() => setMessage(null), 5000);
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Failed to send testimonial';
-      console.error('Error submitting testimoni:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Failed to send review';
+      console.error('Error submitting review:', error);
       setMessage({ type: 'error', text: `❌ ${errorMessage}` });
     } finally {
       setLoading(false);
@@ -117,7 +117,7 @@ export const TestimoniForm = () => {
 
   return (
     <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl">
-      <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-white mb-6">Share Your Testimonial / Bagikan Testimoni</h3>
+      <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-white mb-6">Share Your Review / Bagikan Review</h3>
 
       <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
         {/* Collaboration Type */}
@@ -277,7 +277,7 @@ export const TestimoniForm = () => {
         {/* Komentar */}
         <div>
           <label htmlFor="komentar" className="block text-xs sm:text-sm font-body text-white/80 mb-2">
-            Testimonial / Testimoni <span className="text-red-400">*</span>
+            Review / Review <span className="text-red-400">*</span>
           </label>
           <textarea
             id="komentar"
@@ -330,7 +330,7 @@ export const TestimoniForm = () => {
           className="w-full px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-accent to-secondary text-gray-900 font-body font-semibold rounded-lg sm:rounded-xl hover:shadow-lg hover:shadow-accent/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 text-xs sm:text-sm"
         >
           <Send size={16} className="sm:w-5 sm:h-5" />
-          {loading ? 'Sending... / Mengirim...' : 'Send Testimonial / Kirim Testimoni'}
+          {loading ? 'Sending... / Mengirim...' : 'Send Review / Kirim Review'}
         </button>
       </form>
     </div>
