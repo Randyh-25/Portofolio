@@ -52,10 +52,10 @@ export const TestimoniTab = () => {
 
   useEffect(() => {
     // Simplified query - fetch all first, then filter in code
-    const reviewRef = collection(db, 'reviews');
+    const testimoniRef = collection(db, 'testimoni');
 
     const unsubscribe = onSnapshot(
-      reviewRef,
+      testimoniRef,
       snapshot => {
         console.log('Total documents:', snapshot.docs.length);
         

@@ -69,7 +69,7 @@ export const TestimoniForm = () => {
 
       const selectedProject = projectOptions.find(project => project.slug === formData.projectSlug);
 
-      const reviewRef = collection(db, 'reviews');
+      const testimoniRef = collection(db, 'testimoni');
       
       const dataToSubmit = {
         nama: formData.nama.trim(),
@@ -90,7 +90,7 @@ export const TestimoniForm = () => {
 
       console.log('Submitting review:', dataToSubmit);
       
-      await addDoc(reviewRef, dataToSubmit);
+      await addDoc(testimoniRef, dataToSubmit);
 
       setMessage({ type: 'success', text: '✅ Review sent successfully! Thank you! / Review terkirim! Terima kasih!' });
       setFormData({
