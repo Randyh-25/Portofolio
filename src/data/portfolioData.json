@@ -21,8 +21,32 @@
   },
   "experience": [
   {
+  "slug": "internship-bbws-mesuji-sekampung",
+  "org": "Balai Besar Wilayah Sungai (BBWS) Mesuji Sekampung",
+  "logo": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1770709421/images_pv9lht.png",
+  "role": "Internship Engineering Staff - BBWS Mesuji Sekampung",
+  "period": {
+    "start": "2026-01",
+    "end": "2026-02"
+  },
+  "location": "Bandar Lampung, Lampung, Indonesia",
+  "summary": "Contributed to the daily operations and technical support within the division during the internship period.",
+  "highlights": [
+    "Assisted in data management and documentation for ongoing projects",
+    "Supported the team in administrative and technical tasks",
+    "Participated in field coordination and reporting activities"
+  ],
+  "tech": [
+    "Microsoft Office",
+    "Google Workspace",
+    "Google Appscript"
+  ],
+  "links": []
+  },
+  {
     "slug": "pdd-division-kkn-itera",
     "org": "Institut Teknologi Sumatera (ITERA)",
+    "logo": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1770709211/logo-itera-oke_esfbvb.jpg",
     "role": "PDD Division – Community Service Program (KKN)",
     "period": {
       "start": "2025-07",
@@ -41,6 +65,7 @@
   {
     "slug": "website-division-public-relations",
     "org": "Informatics Department ITERA",
+    "logo": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1770709211/logo-itera-oke_esfbvb.jpg",
     "role": "Website Division – Public Relations",
     "period": {
       "start": "2024-10",
@@ -59,6 +84,7 @@
     {
     "slug": "assistant-practicum-cpp",
     "org": "Institut Teknologi Sumatera (ITERA)",
+    "logo": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1770709211/logo-itera-oke_esfbvb.jpg",
     "role": "Assistant Practicum – C++ Programming",
     "period": {
       "start": "2025-02",
@@ -77,6 +103,7 @@
   {
     "slug": "website-division-accreditation",
     "org": "Informatics Department ITERA",
+    "logo": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1770709211/logo-itera-oke_esfbvb.jpg",
     "role": "Website Division – Accreditation Team",
     "period": {
       "start": "2024-05",
@@ -95,6 +122,7 @@
   {
     "slug": "group-guide-campus-orientation",
     "org": "Institut Teknologi Sumatera (ITERA)",
+    "logo": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1770709211/logo-itera-oke_esfbvb.jpg",
     "role": "Group Guide – Campus Orientation",
     "period": {
       "start": "2024-08",
@@ -113,6 +141,7 @@
   {
     "slug": "content-editor-alfaris",
     "org": "SMAN 3 Medan",
+    "logo": "",
     "role": "Content Editor – Al-Faris Organization",
     "period": {
       "start": "2020-08",
@@ -136,6 +165,7 @@
     {
   "slug": "skined-ai-skin-detection",
   "title": "Project SkinEd: AI Skin Type Detection",
+  "thumbnail": "",
   "summary": "AI-powered facial skin classification system using ResNet50 and web-based interface.",
   "status": "Done",
   "period": {
@@ -175,6 +205,7 @@
     {
       "slug": "sumateran-roar",
       "title": "Sumateran Roar",
+      "thumbnail": "",
       "summary": "Dead by Daylight-inspired multiplayer horror game set in Sumatra.",
       "status": "Done",
       "period": {
@@ -216,6 +247,7 @@
     {
       "slug": "toomuchpixel",
       "title": "Too Much Pixels",
+      "thumbnail": "",
       "summary": "2D top-down survival pixel-art game with engaging gameplay mechanics and retro aesthetics.",
       "status": "Done",
       "period": {
@@ -253,6 +285,7 @@
     {
       "slug": "pic-sorter",
       "title": "Pic-Sorter",
+      "thumbnail": "",
       "summary": "Tool for automatic image organization and tagging.",
       "status": "Done",
       "period": {
@@ -284,6 +317,7 @@
     {
       "slug": "digivill",
       "title": "Project Digivill",
+      "thumbnail": "",
       "summary": "Web platform promoting local village MSMEs and digital products.",
       "status": "Done",
       "period": {
@@ -320,6 +354,7 @@
     {
       "slug": "space3d",
       "title": "Project Space3D",
+      "thumbnail": "",
       "summary": "A 3D space exploration game.",
       "status": "Done",
       "period": {
@@ -343,6 +378,7 @@
     {
       "slug": "waag",
       "title": "Weather at a Glance (WAAG)",
+      "thumbnail": "",
       "summary": "A web application providing real-time weather updates.",
       "status": "Done",
       "period": {

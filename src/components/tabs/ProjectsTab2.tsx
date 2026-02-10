@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { ExternalLink, Github, ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ExternalLink, Github, ArrowLeft, ChevronLeft, ChevronRight, ImageIcon } from 'lucide-react';
 
 interface Project {
   slug: string;
   title: string;
   summary: string;
+  thumbnail?: string;
   status: 'Done' | 'Ongoing' | string;
   period: {
     start: string;
@@ -33,6 +34,12 @@ export const ProjectsTab = ({ projects }: ProjectsTabProps) => {
   const [screenshotIndex, setScreenshotIndex] = useState(0);
 
   const filteredProjects = projects.filter((p) => filter === 'All' || p.status === filter);
+
+  const getThumbnail = (project: Project): string | null => {
+    if (project.thumbnail) return project.thumbnail;
+    if (project.screenshots.length > 0) return project.screenshots[0].url;
+    return null;
+  };
 
   if (selectedProject) {
     return (
@@ -191,24 +198,41 @@ export const ProjectsTab = ({ projects }: ProjectsTabProps) => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
-          {filteredProjects.map((project) => (
+          {filteredProjects.map((project) => {
+            const thumb = getThumbnail(project);
+            return (
             <button
               key={project.slug}
               onClick={() => setSelectedProject(project)}
-              className="text-left backdrop-blur-xl bg-white/10 border border-white/20 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 hover:bg-white/15 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent"
+              className="text-left backdrop-blur-xl bg-white/10 border border-white/20 rounded-lg sm:rounded-xl overflow-hidden hover:bg-white/15 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent group"
             >
-              <div className="flex items-start justify-between gap-2 mb-2 sm:mb-3 md:mb-4">
-                <h3 className="font-heading text-sm sm:text-base md:text-lg lg:text-xl font-bold text-white break-words">{project.title}</h3>
+              {/* Thumbnail */}
+              <div className="relative w-full aspect-video bg-black/30 overflow-hidden">
+                {thumb ? (
+                  <img
+                    src={thumb}
+                    alt={`${project.title} thumbnail`}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <ImageIcon size={32} className="text-white/20" />
+                  </div>
+                )}
                 <span
-                  className={`px-1.5 sm:px-2 md:px-3 py-0.5 sm:py-1 rounded-lg text-[10px] sm:text-xs md:text-sm font-body flex-shrink-0 font-semibold ${
-                    project.status === 'Done' 
-                      ? 'bg-accent/30 text-accent' 
-                      : 'bg-secondary/30 text-secondary'
+                  className={`absolute top-2 right-2 px-1.5 sm:px-2 md:px-3 py-0.5 sm:py-1 rounded-lg text-[10px] sm:text-xs font-body font-semibold backdrop-blur-sm ${
+                    project.status === 'Done'
+                      ? 'bg-accent/80 text-gray-900'
+                      : 'bg-secondary/80 text-gray-900'
                   }`}
                 >
                   {project.status}
                 </span>
               </div>
+
+              {/* Card Content */}
+              <div className="p-3 sm:p-4 md:p-5">
+              <h3 className="font-heading text-sm sm:text-base md:text-lg lg:text-xl font-bold text-white break-words mb-1.5 sm:mb-2">{project.title}</h3>
 
               <p className="font-body text-[10px] sm:text-xs md:text-sm text-white/70 mb-2 sm:mb-3 md:mb-4 line-clamp-2">{project.summary}</p>
 
@@ -225,9 +249,11 @@ export const ProjectsTab = ({ projects }: ProjectsTabProps) => {
                 </div>
               )}
 
-              <div className="text-accent font-body text-[10px] sm:text-xs md:text-sm font-semibold">View Details →</div>
+              <div className="text-accent font-body text-[10px] sm:text-xs md:text-sm font-semibold group-hover:translate-x-1 transition-transform duration-300">View Details →</div>
+              </div>
             </button>
-          ))}
+            );
+          })}
         </div>
 
         {filteredProjects.length === 0 && (

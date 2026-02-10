@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { MapPin, Calendar, ArrowLeft, ExternalLink } from 'lucide-react';
+import { MapPin, Calendar, ArrowLeft, ExternalLink, Building2 } from 'lucide-react';
 
 interface Experience {
   slug: string;
   org: string;
+  logo?: string;
   role: string;
   period: {
     start: string;
@@ -44,6 +45,30 @@ export const ExperienceTab = ({ experiences }: ExperienceTabProps) => {
     return `${start} - ${end}`;
   };
 
+  const OrgLogo = ({ logo, org, size = 'md' }: { logo?: string; org: string; size?: 'sm' | 'md' | 'lg' }) => {
+    const sizeClasses = {
+      sm: 'w-8 h-8 sm:w-10 sm:h-10',
+      md: 'w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14',
+      lg: 'w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20',
+    };
+
+    if (logo) {
+      return (
+        <img
+          src={logo}
+          alt={`${org} logo`}
+          className={`${sizeClasses[size]} rounded-lg sm:rounded-xl object-contain bg-white/10 border border-white/20 p-1 sm:p-1.5 flex-shrink-0`}
+        />
+      );
+    }
+
+    return (
+      <div className={`${sizeClasses[size]} rounded-lg sm:rounded-xl bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0`}>
+        <Building2 size={size === 'lg' ? 28 : size === 'md' ? 22 : 16} className="text-white/40" />
+      </div>
+    );
+  };
+
   if (selectedExperience) {
     return (
       <div
@@ -66,12 +91,17 @@ export const ExperienceTab = ({ experiences }: ExperienceTabProps) => {
           </div>
 
           <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 mb-4 sm:mb-6 md:mb-8 shadow-xl">
-            <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-1.5 sm:mb-2 md:mb-3">
-              {selectedExperience.role}
-            </h2>
-            <h3 className="font-heading text-base sm:text-lg md:text-xl text-accent mb-3 sm:mb-4 md:mb-6">
-              {selectedExperience.org}
-            </h3>
+            <div className="flex items-start gap-3 sm:gap-4 md:gap-5 mb-3 sm:mb-4 md:mb-6">
+              <OrgLogo logo={selectedExperience.logo} org={selectedExperience.org} size="lg" />
+              <div className="min-w-0">
+                <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-1.5 sm:mb-2 md:mb-3">
+                  {selectedExperience.role}
+                </h2>
+                <h3 className="font-heading text-base sm:text-lg md:text-xl text-accent">
+                  {selectedExperience.org}
+                </h3>
+              </div>
+            </div>
 
             <div className="flex flex-wrap gap-2 sm:gap-3 md:gap-6 text-[10px] sm:text-xs md:text-sm text-white/70 font-body">
               <div className="flex items-center gap-1.5 sm:gap-2">
@@ -169,11 +199,14 @@ export const ExperienceTab = ({ experiences }: ExperienceTabProps) => {
                 focus:outline-none focus:ring-2 focus:ring-accent
               "
             >
-              <div className="mb-2 sm:mb-3 md:mb-4">
-                <h3 className="font-heading text-sm sm:text-base md:text-lg lg:text-xl font-bold text-white break-words mb-0.5 sm:mb-1">
-                  {exp.role}
-                </h3>
-                <p className="font-body text-xs sm:text-sm md:text-base text-accent">{exp.org}</p>
+              <div className="flex items-start gap-2.5 sm:gap-3 md:gap-4 mb-2 sm:mb-3 md:mb-4">
+                <OrgLogo logo={exp.logo} org={exp.org} size="sm" />
+                <div className="min-w-0">
+                  <h3 className="font-heading text-sm sm:text-base md:text-lg lg:text-xl font-bold text-white break-words mb-0.5 sm:mb-1">
+                    {exp.role}
+                  </h3>
+                  <p className="font-body text-xs sm:text-sm md:text-base text-accent">{exp.org}</p>
+                </div>
               </div>
 
               <div className="flex items-center gap-1.5 sm:gap-2 mb-2 sm:mb-3 md:mb-4 text-[10px] sm:text-xs md:text-sm text-white/60 font-body">
