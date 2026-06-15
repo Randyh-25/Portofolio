@@ -7,10 +7,10 @@
     "education": "Undergraduate Student at Sumatera Institute of Technology, Major in Informatics Engineering",
     "softSkills": ["Problem Solving", "Team Collaboration", "Communication", "Critical Thinking", "Time Management"],
     "technicalSkills": ["JavaScript", "TypeScript", "React", "Node.js", "Python", "C++", "C#", "Unity C#"],
-    "bio": [
+      "bio": [
       "I’m Randy Hendriyawan, an undergraduate student majoring in Informatics Engineering at Institut Teknologi Sumatera (ITERA). I’m a developer and game creator with a strong passion for technology, digital media, and interactive design.",
       "My work spans web development, game development, and content creation, combining technical precision with creativity. I enjoy turning ideas into functional and engaging digital experiences from building scalable web platforms to designing immersive gameplay mechanics.",
-      "With hands-on experience in full-stack development, Unity, and UE4, I focus on writing clean, maintainable code and building user-centered solutions. I’m also deeply interested in blending education, interactivity, and entertainment through technology.",
+      "With hands-on experience in full-stack development and Unity, I focus on writing clean, maintainable code and building user-centered solutions. I’m also deeply interested in blending education, interactivity, and entertainment through technology.",
       "When I’m not coding or designing, I explore emerging tech trends, contribute to open-source projects, and collaborate on innovative student initiatives that drive learning and creativity."
     ],
     "links": {
@@ -163,45 +163,87 @@
 
   "projects": [
     {
-  "slug": "skined-ai-skin-detection",
-  "title": "Project SkinEd: AI Skin Type Detection",
-  "thumbnail": "",
-  "summary": "AI-powered facial skin classification system using ResNet50 and web-based interface.",
-  "status": "Done",
-  "period": {
-    "start": "2024-09",
-    "end": "2025-01"
-  },
-  "tech": ["Python", "PyTorch", "ResNet50", "Flask", "OpenCV", "HTML/CSS/JS"],
-  "category": ["Machine Learning", "Computer Vision", "Health Tech"],
-  "screenshots": [
-    {
-      "url": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1765431701/DSC_9454_fhhixq.jpg",
-      "caption": "Featured in Informatics Expo ITERA 2025"
+      "slug": "bisan",
+      "title": "Bisan (Dark Fantasy Action-Survival RPG)",
+      "thumbnail": "",
+      "summary": "Sebuah game Action-Survival RPG berlatar dunia dark fantasy yang menonjolkan mekanik pure physical swordplay dan arsitektur combat terstruktur menggunakan State Machine dan Animator Override Controller.",
+      "status": "Ongoing",
+      "period": {
+        "start": "2025-10",
+        "end": null
+      },
+      "tech": ["Unity", "C#", "Animator", "State Machine", "Mobile Input"],
+      "category": ["Game", "Unity", "Action"],
+      "screenshots": [],
+      "demoUrl": "https://youtu.be/ZJMHYRoaxiI",
+      "repoUrl": "",
+      "outcomes": [
+        "Implementasi Full-Body Blend Tree untuk pergerakan karakter yang realistis",
+        "Physics-based hit detection ter-trigger oleh Animation Event dan antarmuka IDamageable untuk presisi tanpa RNG",
+        "Sistem pergantian senjata real-time via Animator Override Controller (AOC) dan arsitektur combat berbasis State Machine",
+        "One-Thumb Combat input untuk pengalaman mobile yang responsif"
+      ]
     },
     {
-      "url": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1765431319/o1_hqfpat.jpg",
-      "caption": "Main interface – upload and detection page"
+      "slug": "android-plant-disease-detection",
+      "title": "Aplikasi Android Deteksi Penyakit Tanaman (Tugas Akhir)",
+      "thumbnail": "",
+      "summary": "Proyek Edge AI yang mengimplementasikan machine learning pada perangkat seluler. Aplikasi membandingkan MobileNetV3-Small dan ShuffleNetV2 yang dikonversi ke TFLite untuk deteksi penyakit tanaman secara real-time pada perangkat Android. (Repository private saat ini)",
+      "status": "Ongoing",
+      "period": {
+        "start": "2026-03",
+        "end": null
+      },
+      "tech": ["TensorFlow Lite", "Android", "MobileNetV3-Small", "ShuffleNetV2", "TFLite"],
+      "category": ["Mobile", "Edge AI"],
+      "screenshots": [],
+      "demoUrl": "",
+      "repoUrl": "",
+      "outcomes": [
+        "Perbandingan performa dua arsitektur ringan di perangkat mobile",
+        "Deteksi penyakit tanaman real-time pada Android dengan model TFLite yang dioptimalkan",
+        "Implementasi pipeline konversi model dan optimisasi untuk inference di edge"
+      ]
     },
     {
-      "url": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1765431317/o2_m7j3lf.jpg",
-      "caption": "AI loading"
+      "slug": "skined-ai-skin-detection",
+      "title": "Project SkinEd: AI Skin Type Detection",
+      "thumbnail": "",
+      "summary": "AI-powered facial skin classification system using ResNet50 and web-based interface.",
+      "status": "Done",
+      "period": {
+        "start": "2024-09",
+        "end": "2025-01"
+      },
+      "tech": ["Python", "PyTorch", "ResNet50", "Flask", "OpenCV", "HTML/CSS/JS"],
+      "category": ["Machine Learning", "Computer Vision", "Health Tech"],
+      "screenshots": [
+        {
+          "url": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1765431701/DSC_9454_fhhixq.jpg",
+          "caption": "Featured in Informatics Expo ITERA 2025"
+        },
+        {
+          "url": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1765431319/o1_hqfpat.jpg",
+          "caption": "Main interface – upload and detection page"
+        },
+        {
+          "url": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1765431317/o2_m7j3lf.jpg",
+          "caption": "AI loading"
+        },
+        {
+          "url": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1765431318/o3_qukdhy.jpg",
+          "caption": "Detection result with skin type and recommendations"
+        }
+      ],
+      "demoUrl": null,
+      "repoUrl": "https://colab.research.google.com/drive/1c-mAjwzPkk5IyxqsCgKg96ahzvX-JX3z?usp=sharing",
+      "outcomes": [
+        "Successfully implemented ResNet50 fine-tuned for 3-class skin type recognition (normal, dry, oily)",
+        "Achieved high evaluation performance with ROC-AUC > 0.90 for all classes",
+        "Integrated live inference through Haar-Cascade face detection and Flask backend",
+        "Showcased at Informatics Expo 2025 as an applied AI project"
+      ]
     },
-    {
-      "url": "https://res.cloudinary.com/dwfz1iaay/image/upload/v1765431318/o3_qukdhy.jpg",
-      "caption": "Detection result with skin type and recommendations"
-    }
-  ],
-  "demoUrl": null,
-  "repoUrl": "https://colab.research.google.com/drive/1c-mAjwzPkk5IyxqsCgKg96ahzvX-JX3z?usp=sharing",
-  "outcomes": [
-    "Successfully implemented ResNet50 fine-tuned for 3-class skin type recognition (normal, dry, oily)",
-    "Achieved high evaluation performance with ROC-AUC > 0.90 for all classes",
-    "Integrated live inference through Haar-Cascade face detection and Flask backend",
-    "Showcased at Informatics Expo 2025 as an applied AI project"
-  ]
-},
-
     {
       "slug": "sumateran-roar",
       "title": "Sumateran Roar",
@@ -410,6 +452,35 @@
       "outcomes": [
         "Real-time weather updates for users",
         "Improved user experience with accurate weather information"
+      ]
+    },
+    {
+      "slug": "nonsteamtime",
+      "title": "Steam Non-Game Playtime Manager",
+      "thumbnail": "",
+      "summary": "Sebuah aplikasi antarmuka grafis (GUI) berbasis Python yang dirancang untuk mengelola, mengedit, dan melacak data waktu bermain (playtime) untuk game atau aplikasi di luar Steam (Non-Steam Games).",
+      "status": "Done",
+      "period": {
+        "start": "2024-06",
+        "end": null
+      },
+      "tech": ["Python", "Tkinter", "SQLite", "PyInstaller"],
+      "category": ["Tools", "Utility"],
+      "screenshots": [
+        { "url": "https://raw.githubusercontent.com/Randyh-25/NonSteamTime/main/img/1.png", "caption": "Screenshot 1" },
+        { "url": "https://raw.githubusercontent.com/Randyh-25/NonSteamTime/main/img/2.png", "caption": "Screenshot 2" },
+        { "url": "https://raw.githubusercontent.com/Randyh-25/NonSteamTime/main/img/3.png", "caption": "Screenshot 3" },
+        { "url": "https://raw.githubusercontent.com/Randyh-25/NonSteamTime/main/img/4.png", "caption": "Screenshot 4" },
+        { "url": "https://raw.githubusercontent.com/Randyh-25/NonSteamTime/main/img/5.png", "caption": "Screenshot 5" },
+        { "url": "https://raw.githubusercontent.com/Randyh-25/NonSteamTime/main/img/6.png", "caption": "Screenshot 6" },
+        { "url": "https://raw.githubusercontent.com/Randyh-25/NonSteamTime/main/img/7.png", "caption": "Screenshot 7" }
+      ],
+      "demoUrl": null,
+      "repoUrl": "https://github.com/Randyh-25/NonSteamTime",
+      "outcomes": [
+        "Menyediakan antarmuka mudah pakai untuk mencatat dan mengedit playtime Non-Steam",
+        "Mendukung ekspor/impor data dan integrasi sederhana dengan emulator",
+        "Dapat dikemas sebagai executable menggunakan PyInstaller untuk distribusi"
       ]
     }
   ]

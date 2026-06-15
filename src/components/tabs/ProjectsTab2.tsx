@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ExternalLink, Github, ArrowLeft, ChevronLeft, ChevronRight, ImageIcon } from 'lucide-react';
+import { ExternalLink, Github, ArrowLeft, ChevronLeft, ChevronRight, ImageIcon, Play } from 'lucide-react';
 
 interface Project {
   slug: string;
@@ -36,8 +36,21 @@ export const ProjectsTab = ({ projects }: ProjectsTabProps) => {
   const filteredProjects = projects.filter((p) => filter === 'All' || p.status === filter);
 
   const getThumbnail = (project: Project): string | null => {
+    const getYouTubeId = (url?: string): string | null => {
+      if (!url) return null;
+      const m = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+      return m ? m[1] : null;
+    };
+
     if (project.thumbnail) return project.thumbnail;
     if (project.screenshots.length > 0) return project.screenshots[0].url;
+
+    const ytId = getYouTubeId(project.demoUrl);
+    if (ytId) {
+      // Try high-res thumbnail, fallback handled by browser if unavailable
+      return `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg`;
+    }
+
     return null;
   };
 
@@ -208,17 +221,60 @@ export const ProjectsTab = ({ projects }: ProjectsTabProps) => {
             >
               {/* Thumbnail */}
               <div className="relative w-full aspect-video bg-black/30 overflow-hidden">
-                {thumb ? (
-                  <img
-                    src={thumb}
-                    alt={`${project.title} thumbnail`}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center">
-                    <ImageIcon size={32} className="text-white/20" />
-                  </div>
-                )}
+                {(() => {
+                  const isYouTube = (url?: string) => !!url && (url.includes('youtube.com') || url.includes('youtu.be'));
+                  if (thumb) {
+                    if (isYouTube(project.demoUrl)) {
+                      return (
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="absolute inset-0 block"
+                        >
+                          <img
+                            src={thumb}
+                            alt={`${project.title} thumbnail`}
+                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="bg-black/40 rounded-full p-2">
+                              <Play size={20} className="text-white" />
+                            </div>
+                          </div>
+                        </a>
+                      );
+                    }
+                    return (
+                      <img
+                        src={thumb}
+                        alt={`${project.title} thumbnail`}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    );
+                  }
+
+                  if (isYouTube(project.demoUrl)) {
+                    return (
+                      <a
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="w-full h-full flex items-center justify-center block"
+                      >
+                        <ImageIcon size={32} className="text-white/20" />
+                      </a>
+                    );
+                  }
+
+                  return (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <ImageIcon size={32} className="text-white/20" />
+                    </div>
+                  );
+                })()}
                 <span
                   className={`absolute top-2 right-2 px-1.5 sm:px-2 md:px-3 py-0.5 sm:py-1 rounded-lg text-[10px] sm:text-xs font-body font-semibold backdrop-blur-sm ${
                     project.status === 'Done'
